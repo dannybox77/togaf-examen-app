@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TOGAF 10 · Preparación Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F1E8;
+  --paper-2:#ECE7D9;
+  --ink:#1E2B22;
+  --ink-soft:#4B5A4F;
+  --line:#C9C0A6;
+  --line-strong:#9FB39A;
+  --blue:#2E4C6D;
+  --blue-soft:#DCE6EC;
+  --green:#3C6E47;
+  --green-soft:#DEEBDD;
+  --rust:#A8442E;
+  --rust-soft:#F3DFD7;
+  --gold:#9C7A24;
+  --gold-soft:#F1E7C9;
+  --card:#FBF9F2;
+  --radius:4px;
+  --shadow:0 1px 0 rgba(30,43,34,.08);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#161D18;
+    --paper-2:#1D2620;
+    --ink:#E9E7DC;
+    --ink-soft:#AEB8AC;
+    --line:#3A4238;
+    --line-strong:#4E6350;
+    --blue:#8FB2D6;
+    --blue-soft:#233240;
+    --green:#8FC79A;
+    --green-soft:#22321F;
+    --rust:#E39178;
+    --rust-soft:#3A2420;
+    --gold:#E0C271;
+    --gold-soft:#3A3220;
+    --card:#1C231D;
+    --shadow:0 1px 0 rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#161D18;
+  --paper-2:#1D2620;
+  --ink:#E9E7DC;
+  --ink-soft:#AEB8AC;
+  --line:#3A4238;
+  --line-strong:#4E6350;
+  --blue:#8FB2D6;
+  --blue-soft:#233240;
+  --green:#8FC79A;
+  --green-soft:#22321F;
+  --rust:#E39178;
+  --rust-soft:#3A2420;
+  --gold:#E0C271;
+  --gold-soft:#3A3220;
+  --card:#1C231D;
+  --shadow:0 1px 0 rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/40px 40px,
+    var(--paper);
+  background-attachment:local;
+  color:var(--ink);
+  font-family:'IBM Plex Sans', system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  -webkit-font-smoothing:antialiased;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+.serif{font-family:'Fraunces', serif;}
+.mono{font-family:'IBM Plex Mono', monospace;}
+
+#app{
+  max-width:780px;
+  margin:0 auto;
+  padding:28px 20px 64px;
+  min-height:100%;
+}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:28px;
+  padding-bottom:14px;
+  border-bottom:2px solid var(--ink);
+}
+.topbar .brand{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  cursor:pointer;
+}
+.brand .mark{
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:600;
+  font-size:13px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  width:30px;height:30px;
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:none;
+}
+.brand h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:21px;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.brand .sub{
+  font-size:12px;
+  color:var(--ink-soft);
+  font-family:'IBM Plex Mono', monospace;
+}
+.theme-toggle{
+  border:1px solid var(--line-strong);
+  background:transparent;
+  color:var(--ink-soft);
+  border-radius:20px;
+  padding:5px 12px;
+  font-size:12px;
+  font-family:'IBM Plex Mono', monospace;
+  cursor:pointer;
+}
+.theme-toggle:hover{border-color:var(--ink);color:var(--ink);}
+
+/* ---------- home ---------- */
+.hero{margin-bottom:30px;}
+.hero .kicker{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--blue);
+  margin-bottom:8px;
+}
+.hero h2{
+  font-family:'Fraunces', serif;
+  font-size:30px;
+  font-weight:600;
+  line-height:1.15;
+  margin:0 0 10px;
+  max-width:22ch;
+}
+.hero p{
+  color:var(--ink-soft);
+  max-width:52ch;
+  margin:0;
+}
+
+.modes{display:flex;flex-direction:column;gap:14px;margin-bottom:30px;}
+.mode-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:4px solid var(--blue);
+  border-radius:var(--radius);
+  padding:18px 18px;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  transition:transform .12s ease, border-color .12s ease;
+}
+.mode-card:hover{transform:translateX(2px);}
+.mode-card.green{border-left-color:var(--green);}
+.mode-card.gold{border-left-color:var(--gold);}
+.mode-card.ref{border-left-color:var(--ink-soft);}
+.mode-card.purple{border-left-color:#7A5FA8;}
+.mode-card .num{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--ink-soft);
+  width:38px;flex:none;
+  padding-top:3px;
+}
+.mode-card .body h3{
+  margin:0 0 4px;
+  font-family:'Fraunces', serif;
+  font-size:19px;
+  font-weight:600;
+}
+.mode-card .body p{
+  margin:0 0 8px;
+  color:var(--ink-soft);
+  font-size:14px;
+}
+.mode-card .meta{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px;
+  color:var(--blue);
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.mode-card.green .meta{color:var(--green);}
+.mode-card.gold .meta{color:var(--gold);}
+.mode-card.ref .meta{color:var(--ink-soft);}
+.mode-card.purple .meta{color:#7A5FA8;}
+
+.history{
+  border:1px dashed var(--line-strong);
+  border-radius:var(--radius);
+  padding:14px 16px;
+  font-size:13px;
+}
+.history h4{
+  margin:0 0 8px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px;
+  text-transform:none;
+  color:var(--ink-soft);
+  letter-spacing:.02em;
+}
+.history .row{
+  display:flex;justify-content:space-between;
+  padding:5px 0;
+  border-top:1px solid var(--line);
+}
+.history .row:first-of-type{border-top:none;}
+.history .empty{color:var(--ink-soft);font-style:italic;}
+
+/* ---------- day select ---------- */
+.daylist{display:flex;flex-direction:column;gap:8px;}
+.day-row{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:12px 14px;
+  cursor:pointer;
+}
+.day-row:hover{border-color:var(--ink-soft);}
+.day-badge{
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:600;
+  font-size:13px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  width:34px;height:34px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.day-row .dtitle{font-weight:600;font-size:14.5px;}
+.day-row .dcount{font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono', monospace;}
+.day-row .dbest{margin-left:auto;font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--green);flex:none;text-align:right;}
+
+.count-picker{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 26px;}
+.count-picker button{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;
+  padding:9px 16px;
+  border-radius:20px;
+  border:1.5px solid var(--line-strong);
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+}
+.count-picker button:hover, .count-picker button.active{
+  border-color:var(--blue);
+  background:var(--blue-soft);
+  color:var(--blue);
+}
+
+.back-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px;color:var(--ink-soft);
+  cursor:pointer;margin-bottom:18px;background:none;border:none;padding:0;
+}
+.back-link:hover{color:var(--ink);}
+
+.section-title{
+  font-family:'Fraunces', serif;
+  font-size:22px;font-weight:600;margin:0 0 4px;
+}
+.section-desc{color:var(--ink-soft);font-size:14px;margin:0 0 18px;}
+
+/* ---------- quiz ---------- */
+.quiz-head{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px;
+}
+.progress-wrap{flex:1;}
+.progress-label{
+  font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);
+  display:flex;justify-content:space-between;margin-bottom:6px;
+}
+.progress-bar{height:6px;background:var(--paper-2);border:1px solid var(--line);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--blue);}
+.timer{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;font-weight:600;
+  border:1.5px solid var(--line-strong);
+  border-radius:20px;padding:6px 12px;flex:none;
+  white-space:nowrap;
+}
+.timer.low{border-color:var(--rust);color:var(--rust);}
+
+.qcard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 22px 20px;
+  margin-bottom:16px;
+}
+.qcard .qtag{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px;color:var(--blue);margin-bottom:10px;
+}
+.qcard .qtext{
+  font-family:'Fraunces', serif;
+  font-size:19px;font-weight:500;line-height:1.4;margin:0 0 18px;
+}
+.options{display:flex;flex-direction:column;gap:9px;}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;
+  border:1.5px solid var(--line);
+  border-radius:var(--radius);
+  padding:12px 14px;
+  cursor:pointer;
+  font-size:14.5px;
+  background:var(--paper);
+}
+.opt:hover{border-color:var(--ink-soft);}
+.opt .letter{
+  font-family:'IBM Plex Mono', monospace;font-weight:600;font-size:12.5px;
+  border:1.5px solid var(--ink-soft);border-radius:50%;
+  width:24px;height:24px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:1px;
+}
+.opt.selected{border-color:var(--blue);background:var(--blue-soft);}
+.opt.selected .letter{border-color:var(--blue);color:var(--blue);}
+.opt.correct{border-color:var(--green);background:var(--green-soft);}
+.opt.correct .letter{border-color:var(--green);background:var(--green);color:var(--card);}
+.opt.incorrect{border-color:var(--rust);background:var(--rust-soft);}
+.opt.incorrect .letter{border-color:var(--rust);background:var(--rust);color:var(--card);}
+.opt.disabled{cursor:default;}
+
+.feedback{
+  margin-top:14px;padding:12px 14px;border-radius:var(--radius);font-size:13.5px;
+}
+.feedback.ok{background:var(--green-soft);color:var(--green);}
+.feedback.bad{background:var(--rust-soft);color:var(--rust);}
+.feedback b{font-family:'IBM Plex Mono', monospace;font-weight:600;}
+.feedback .explain{color:var(--ink);opacity:.85;margin-top:4px;}
+
+.quiz-actions{display:flex;justify-content:flex-end;gap:10px;}
+.btn{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;font-weight:600;
+  padding:11px 20px;border-radius:20px;border:1.5px solid var(--ink);
+  background:var(--ink);color:var(--paper);cursor:pointer;
+}
+.btn:disabled{opacity:.35;cursor:not-allowed;}
+.btn.ghost{background:transparent;color:var(--ink);}
+.btn.ghost:hover{background:var(--paper-2);}
+.btn:not(:disabled):hover{opacity:.85;}
+
+/* ---------- results ---------- */
+.score-wrap{
+  display:flex;align-items:center;gap:22px;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px;margin-bottom:20px;
+}
+.score-ring{
+  width:96px;height:96px;flex:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces', serif;font-weight:600;font-size:22px;
+  border:6px solid var(--line);
+}
+.score-ring.pass{border-color:var(--green);color:var(--green);}
+.score-ring.fail{border-color:var(--rust);color:var(--rust);}
+.score-info h3{margin:0 0 4px;font-family:'Fraunces', serif;font-size:20px;}
+.score-info p{margin:0;color:var(--ink-soft);font-size:13.5px;}
+.score-info .pct{font-family:'IBM Plex Mono', monospace;font-size:12px;margin-top:6px;}
+
+.review-list{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
+.review-item{
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;background:var(--card);
+}
+.review-item .rq{font-size:14px;font-weight:600;margin-bottom:8px;}
+.review-item .ra{font-size:13px;margin-bottom:3px;}
+.review-item .ra.correct{color:var(--green);}
+.review-item .ra.wrong{color:var(--rust);text-decoration:line-through;}
+.review-item .explain{font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
+
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+
+footer.note{
+  text-align:center;color:var(--ink-soft);font-size:12px;margin-top:36px;
+  font-family:'IBM Plex Mono', monospace;
+}
+
+/* ---------- reference / chuleta ---------- */
+.ref-section{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:var(--card);
+  margin-bottom:10px;
+  overflow:hidden;
+}
+.ref-head{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;cursor:pointer;
+}
+.ref-head .rbadge{
+  font-family:'IBM Plex Mono', monospace;font-size:11px;font-weight:600;
+  border:1.5px solid var(--ink-soft);border-radius:50%;
+  width:28px;height:28px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.ref-head h3{margin:0;font-family:'Fraunces', serif;font-size:16.5px;font-weight:600;flex:1;}
+.ref-head .chev{font-family:'IBM Plex Mono', monospace;color:var(--ink-soft);transition:transform .15s ease;flex:none;}
+.ref-section.open .chev{transform:rotate(90deg);}
+.ref-body{
+  padding:0 18px 18px;
+  display:none;
+  font-size:13.5px;
+}
+.ref-section.open .ref-body{display:block;}
+.ref-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+.ref-table th{
+  text-align:left;font-family:'IBM Plex Mono', monospace;font-weight:600;font-size:11px;
+  color:var(--ink-soft);padding:6px 8px;border-bottom:1.5px solid var(--line-strong);
+}
+.ref-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+.ref-table tr:last-child td{border-bottom:none;}
+.ref-table td.rf-name{font-weight:600;white-space:nowrap;color:var(--blue);}
+.ref-note{
+  background:var(--paper-2);border-left:3px solid var(--gold);
+  padding:10px 12px;border-radius:0 var(--radius) var(--radius) 0;
+  margin-top:10px;font-size:13px;color:var(--ink-soft);
+}
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;}
+.ref-pill{
+  border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;background:var(--paper);
+}
+.ref-pill .pt{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--blue);margin-bottom:3px;}
+@media (max-width:560px){ .ref-grid{grid-template-columns:1fr;} .ref-table{font-size:12px;} }
+
+@media (max-width:520px){
+  .hero h2{font-size:25px;}
+  .score-wrap{flex-direction:column;text-align:center;}
+  .qcard{padding:18px 16px;}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const EXAM_QUESTIONS = [{"id":1,"q":"Complete the sentence: The TOGAF Standard covers the development of four architecture domains, Application, Data, Technology, and …","options":["Business.","Capability.","Transformation.","Transition."],"correct":0,"explain":"The TOGAF Standard covers the development of four architecture domains: Application, Data, Technology, and Business."},{"id":2,"q":"Consider the following descriptions of deliverables consumed and produced across the TOGAF ADM cycle: 1) A summary of changes to the enterprise that will accrue from successful deployment of the Target Architecture. 2) The joint agreement between development partners and sponsors on the deliverables, quality, and fitness-for-purpose of an architecture. 3) A document sent from the sponsoring organization to the architecture organization to trigger the start of an architecture development cycle. 4) The deliverable container for the core architectural artifacts created during a project. Which deliverables match these descriptions?","options":["1-Architecture Vision, 2-Architecture Contract, 3-Request for Architecture Work, 4-Architecture Definition Document","1-Architecture Vision, 2-Request for Architecture Work, 3-Architecture Vision, 4-Architecture Definition Document","1-Change Request, 2-Architecture Contract, 3-Architecture Definition Document, 4-Request for Architecture Work","1-Request for Architecture Work, 2-Architecture Definition Document, 3-Architecture Contract, 4-Architecture Vision"],"correct":0,"explain":""},{"id":3,"q":"Where is the practical guidance on how to apply the TOGAF Standard provided?","options":["The TOGAF Fundamental Content","The TOGAF Library","The TOGAF Series Guides","The ADM Techniques"],"correct":2,"explain":"The TOGAF Series Guides provide practical guidance on how to apply the TOGAF Standard."},{"id":4,"q":"You have been asked to explain why Enterprise Architecture can be beneficial. Which of the following is the best answer?","options":["It guides the architects to make appropriate technology choices to maximize shareholder value.","It optimizes the enterprise business strategy making all components work together.","It provides a strategic context for the evolution of the enterprise in response to constantly changing needs.","It sets the range, scope, and scale of the changes defined by the strategy."],"correct":2,"explain":"Enterprise Architecture can be beneficial as it provides a strategic context for the evolution of the enterprise in response to constantly changing needs."},{"id":5,"q":"What is an objective of the Preliminary Phase?","options":["To develop the Architecture Vision document","To develop the Implementation and Migration Plan","To establish the Architecture Governance process","To operate the governance framework"],"correct":2,"explain":""},{"id":6,"q":"Which of the following describes a purpose of Architecture Principles?","options":["To control the business in pursuit of strategic objectives","To describe likely impacts resulting from successful deployment of the Target Architecture","To form a contract between the sponsoring organization and the Enterprise Architect","To set precedence during trade-off discussions"],"correct":3,"explain":""},{"id":7,"q":"Which of the following is a responsibility of an Architecture Board?","options":["Allocating resources for architecture projects","Conducting assessments of the maturity level of architecture discipline within the organization","Determining the scope of an architecture compliance review","Enforcement of architecture compliance"],"correct":3,"explain":""},{"id":8,"q":"Which statement best applies to an Architecture Repository?","options":["A complete Architecture Repository is required to capture all artifacts listed in the TOGAF Standard.","A well-run Architecture Repository leads to the minimization of information gathered and maintained.","Agile organizations are not able to use an Architecture Repository.","An Architecture Repository contains materials that are only used by the Enterprise Architecture team."],"correct":1,"explain":""},{"id":9,"q":"What ADM phase includes obtaining approval for the Statement of Architecture Work?","options":["Preliminary Phase","Architecture Vision","Technology Architecture","Migration Planning"],"correct":1,"explain":""},{"id":10,"q":"Refer to the following table: Output & Outcome: An approved set of projects, containing the objective and any necessary constraints, resources required, and start and finish dates. Essential Knowledge: Resources available to undertake the change; how stakeholder priority and preference adjust in response to value, effort, and risk of change (Stakeholder Requirements). Which ADM phase(s) does this describe?","options":["Phase A","Phases B, C, and D","Phase E","Phase F"],"correct":3,"explain":""},{"id":11,"q":"Complete the sentence: A set of Architecture Principles that are enduring and yet able to accommodate change meet the recommended criteria of …","options":["Consistency.","Completeness.","Robustness.","Stability."],"correct":3,"explain":""},{"id":12,"q":"Which of the following describes how the Enterprise Continuum is used when developing an Enterprise Architecture?","options":["To coordinate with the other management frameworks in use","To describe how an architecture addresses stakeholder concerns","To identify and understand business requirements","To structure re-usable architecture and solution assets"],"correct":3,"explain":""},{"id":13,"q":"Consider the following ADM phases objectives: 1) Identify candidate Architecture Roadmap components based upon gaps between the Baseline and Target Technology Architectures. 2) Identify candidate Architecture Roadmap components based upon gaps between the Baseline and Target Information Systems (Data and Application) Architectures. 3) Identify candidate Architecture Roadmap components based upon gaps between the Baseline and Target Business Architectures. 4) Obtain approval for a Statement of Architecture Work that defines a program of works to develop and deploy the architecture outlined in the Architecture Vision. Which phase does each objective match?","options":["1-A, 2-B, 3-C, 4-D","1-B, 2-D, 3-A, 4-C","1-C, 2-D, 3-B, 4-A","1-D, 2-C, 3-B, 4-A"],"correct":3,"explain":""},{"id":14,"q":"According to the TOGAF Standard, which of the following best describes the purpose of an Architecture Definition Document?","options":["To act as a deliverable container for artifacts created during a project","To ensure that architecture information is communicated to the right stakeholders at the right time","To provide a high-level view of the end architecture product","To show progression of change from the Baseline Architecture to the Target Architecture"],"correct":0,"explain":""},{"id":15,"q":"Complete the sentence by selecting the applicable pair of words: A/an … is used in the Business Architecture phase to help identify and understand business … that the architecture has to address.","options":["activity model, perspective","business scenario, requirements","use-case, interconnections","business transformation readiness assessment, constraints"],"correct":1,"explain":"A business scenario is used in the Business Architecture phase to help identify and understand business requirements that the architecture has to address."},{"id":16,"q":"Which statement about architecture partitioning is correct?","options":["A partitioning model is a necessity for Agile enterprises.","An enterprise should develop a partitioning model that reflects its organization structure.","Each enterprise needs to adopt a partitioning model that reflects its operating model.","The TOGAF Standard mandates the use of its partitioning model."],"correct":2,"explain":""},{"id":17,"q":"Which of the following best describes the ADM diagram (the circular diagram with Preliminary and Phases A–H around a central Requirements Management)?","options":["A linear waterfall process model","A sequenced approach to develop an Enterprise Architecture","A stylized representation showing essential information flows","An iteration cycle"],"correct":2,"explain":""},{"id":18,"q":"According to the TOGAF Standard, which of the following best describes the purpose of an Architecture Roadmap?","options":["To ensure that architecture information is communicated to the right stakeholders at the right time","To govern the architecture throughout its implementation process","To provide a high-level view of the end architecture product","To show progression of change from the Baseline Architecture to the Target Architecture"],"correct":3,"explain":"The Architecture Roadmap lists individual work packages that will realize the Target Architecture and lays them out on a timeline to show progression from the Baseline Architecture to the Target Architecture."},{"id":19,"q":"Consider the TOGAF Content Framework image, structured in line with Architecture Principles/Vision/Requirements, Architecture Definition (Business, Information Systems, Technology), and Architecture Realization (Opportunities/Solutions/Migration Planning, Implementation Governance). What does this show?","options":["A Content Framework","A Digital Business","An Architecture Repository","An Enterprise Repository"],"correct":0,"explain":"This is the TOGAF Content Framework, which is structured in line with the phases of the ADM."},{"id":20,"q":"In which phase of the ADM does the TOGAF Standard align with Agile development?","options":["Phase B","Phase E","Phase F","Phase G"],"correct":3,"explain":""},{"id":21,"q":"Consider the following ADM phases objectives: 1) Determine whether an incremental approach is required, and if so identify Transition Architectures that will deliver continuous business value. 2) Ensure that the Implementation and Migration Plan is coordinated with the enterprise's approach to managing and implementing change in the enterprise's overall change portfolio. 3) Define the overall Solution Building Blocks (SBBs) to finalize the Target Architecture based on the Architecture Building Blocks (ABBs). 4) Ensure that the business value and cost of work packages and Transition Architectures is understood by key stakeholders. Which phase does each objective match?","options":["1-E, 2-F, 3-E, 4-F","1-E, 2-F, 3-F, 4-G","1-F, 2-G, 3-F, 4-F","1-G, 2-G, 3-E, 4-F"],"correct":0,"explain":""},{"id":22,"q":"Which of the following best describes the purpose of the Business Transformation Readiness Assessment technique?","options":["To determine if the organization is ready to undergo change","To determine if the stakeholders support the implementation plan","To ensure that there are adequate trained engineers to develop the solution","To plan the migration steps needed to achieve the transformation"],"correct":0,"explain":"The Business Transformation Readiness Assessment technique is used for evaluating and quantifying an organization's readiness to undergo change."},{"id":23,"q":"Consider the following statement: In the ADM, documents which have been reviewed and approved are designated \"approved\" in accordance with the organization's governance practices. Which statement about approved documents is also true?","options":["Approved documents are finalized after a phase.","Approved documents are marked as draft until they are finalized.","Approved documents are not always finalized.","Approved documents may not be changed in subsequent phases."],"correct":2,"explain":""},{"id":24,"q":"Which one of the following best describes the purpose of a Change Request?","options":["To ensure that information is communicated to the right stakeholders at the right time","To ensure that the results of a Compliance Assessment are distributed to the Architecture Board","To request a dispensation or to kick-start a further cycle of architecture work","To review project progress and ensure the implementation is in line with the objectives"],"correct":2,"explain":""},{"id":25,"q":"Why is it important to use iteration when applying the TOGAF ADM?","options":["It enables the capture of stakeholder requirements through the ADM cycle.","It helps identify business scenarios to choose from.","It supports returning to previous phases to update work products with new information.","It supports the selection of alternative Target Architectures."],"correct":2,"explain":"Iteration within an ADM cycle allows projects to operate multiple ADM phases concurrently, cycle between phases in planned cycles covering multiple phases, and return to previous phases to update work products with new information."},{"id":26,"q":"What level of risk is the risk categorization prior to determining and implementing mitigating actions?","options":["Initial","Low","Marginal","Residual"],"correct":0,"explain":""},{"id":27,"q":"Consider an image showing 'Business Capability for Architecture (Operating at a level of maturity)' with Governance Bodies, Skilled Resource Pool, Roles and Responsibilities, Project/Portfolio Governance, and the Enterprise Continuum used to classify inputs/outputs of the Architecture Repository. Which of the following does it illustrate?","options":["An Enterprise Architecture Capability","An Enterprise Architecture","An Enterprise Architecture framework","An Enterprise Architecture metamodel"],"correct":0,"explain":""},{"id":28,"q":"Which of the following statements related to governance in Enterprise Architecture is the most correct?","options":["The architecture practitioner and implementer are directed and both are controlled by the stakeholder.","The architecture practitioner governs the architecture development and controls the implementer.","The CEO governs the architecture and directs the architecture practitioner and implementer.","The stakeholder directs the architecture development and controls the architecture changes."],"correct":0,"explain":""},{"id":29,"q":"Refer to the following table: Output & Outcome: Direction to proceed and start developing a Target Architecture that addresses perceived, real, or anticipated shortfalls in the enterprise relative to stakeholder preferences. Essential Knowledge: Gaps between approved target, or preference, and realization from prior work (Value Realization); changes in preference or priority (Stakeholder Requirements). Which ADM phase does this describe?","options":["Phase B","Phase E","Phase G","Phase H"],"correct":3,"explain":"The Output & Outcome and Essential Knowledge describe Phase H."},{"id":30,"q":"What should be put in place to make sure that architectural artifacts are developed and used with accountability and responsibility?","options":["Governance of the Architecture Definition Document","Governance of the Architecture Vision","Governance of the management of Architecture Contracts","Governance of the Statement of Architecture Work"],"correct":2,"explain":""},{"id":31,"q":"Consider the following ADM phases objectives: 1) Ensure that the Enterprise Architecture Capability meets current requirements. 2) Ensure conformance with the Target Architecture by implementation projects. 3) Finalize the Architecture Roadmap and the supporting Implementation and Migration Plan. 4) Perform appropriate Architecture Governance functions for the solution and any implementation-driven architecture Change Requests. Which phase does each objective match?","options":["1-E, 2-F, 3-F, 4-H","1-F, 2-G, 3-G, 4-F","1-F, 2-H, 3-H, 4-G","1-H, 2-G, 3-F, 4-G"],"correct":3,"explain":""},{"id":32,"q":"Consider the following description: The first part uses the vision, principles, requirements, and other information to select sets of criteria fitting for different alternatives. The second part defines alternatives based on the criteria and builds an understanding of each. The third part will either select one of the alternatives, or else combine features from more than one, to create the proposed alternative. What does this describe?","options":["Architecture Partitioning","Iteration","The Architecture Trade-Off method","The Business Scenario method"],"correct":2,"explain":""},{"id":33,"q":"When considering the scope of an architecture, what dimension considers the appropriate level of detail to be captured based on intended use of the Enterprise Architecture?","options":["Breadth","Depth","Project","Segment"],"correct":1,"explain":""},{"id":34,"q":"Consider an illustration of an architecture development cycle with Preliminary at the top center, and Phases A through H arranged around a central hub. Select the correct phase names corresponding to the Labels 1, 2, and 3 (1=B position, 2=D position, 3=F position).","options":["1-Architecture Vision, 2-Technology Architecture, 3-Migration Planning","1-Business Architecture, 2-Data Architecture, 3-Opportunities and Solutions","1-Business Architecture, 2-Technology Architecture, 3-Migration Planning","1-Information Systems Architectures, 2-Opportunities and Solutions, 3- Architecture Governance"],"correct":2,"explain":""},{"id":35,"q":"Which of the following best describes a purpose of the Gap Analysis technique?","options":["To catch errors in a project architecture early","To guide decision-making throughout the enterprise","To help identify and understand business requirements","To highlight shortfalls between the Baseline and Target Architectures."],"correct":3,"explain":""},{"id":36,"q":"Which section of the TOGAF template for Architecture Principles highlights the requirements for the Business and IT, for carrying out the principle?","options":["Implications","Name","Rationale","Statement"],"correct":0,"explain":""},{"id":37,"q":"The strategy for a hardware store chain includes expanding its sales from physical stores to include online sales and services. You have been asked if they should use an Enterprise Architecture to support this change and why? (Select the best answer)","options":["No, as this is a Digital Transformation, using an Enterprise Architecture is not suitable as it will slow down the Agile solution development.","No, Enterprise Architecture helps to describe the future state and the current state of the enterprise, but is not suitable for such a strategic change.","Yes, a good Enterprise Architecture facilitates effective governance, management, risk management, and exploitation opportunities.","Yes, an Enterprise Architecture team experienced in current technology will be able to take the key decisions needed for such a change."],"correct":2,"explain":"A good Enterprise Architecture facilitates effective governance, management, risk management, and exploitation opportunities."},{"id":38,"q":"What are the levels of the Architecture Landscape?","options":["Baseline, Transition, and Target Architectures","Business, Data, Application, and Technology Architectures","Capability, Segment, and Strategic Architectures","Foundation, Common, and Solution Architectures"],"correct":2,"explain":""},{"id":39,"q":"Which of the following best describes how Architecture Governance typically operates?","options":["At the top level of the organization","In isolation","In Phase G of the ADM","Within a hierarchy of governance structure"],"correct":3,"explain":""},{"id":40,"q":"Which of the following best describes the purpose of the Statement of Architecture Work?","options":["It defines the scope and approach to complete an architecture development cycle","It is sent from the sponsor and triggers the start of an architecture development cycle","It provides a high-level aspirational view of the end architecture project","It provides a schedule for implementation of the Target Architecture"],"correct":0,"explain":""}]
+;
+const PRACTICE_QUESTIONS = [{"id":1,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Which of the following best describes Enterprise Architecture?","options":["A software development lifecycle","A framework for translating business strategy into effective enterprise change","A database governance structure","A cloud implementation framework"],"correct":1},{"id":2,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Which of the following is one of the four architecture domains?","options":["Security Architecture","Governance Architecture","Application Architecture","Strategic Architecture"],"correct":2},{"id":3,"day":1,"topic":"Concepts and Enterprise Architecture","q":"What is one key benefit of Enterprise Architecture?","options":["Eliminating all business risks","Faster and simpler procurement","Replacing governance structures","Removing stakeholders from decisions"],"correct":1},{"id":4,"day":1,"topic":"Concepts and Enterprise Architecture","q":"What does Business Architecture describe?","options":["Hardware infrastructure","Logical databases","Business strategy and processes","Cloud deployment standards"],"correct":2},{"id":5,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Which statement best describes the TOGAF Standard?","options":["A linear waterfall implementation model","A framework for Enterprise Architecture","A software testing methodology","A procurement governance tool"],"correct":1},{"id":6,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Which architecture domain focuses on logical and physical data assets?","options":["Business Architecture","Application Architecture","Data Architecture","Technology Architecture"],"correct":2},{"id":7,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Technology Architecture includes:","options":["Marketing processes","Stakeholder concerns only","Hardware and software infrastructure","Procurement contracts"],"correct":2},{"id":8,"day":1,"topic":"Concepts and Enterprise Architecture","q":"What is one reason TOGAF is suitable for Enterprise Architecture?","options":["It eliminates governance","It de-risks architecture development","It replaces Agile methods","It focuses only on infrastructure"],"correct":1},{"id":9,"day":1,"topic":"Concepts and Enterprise Architecture","q":"What does Enterprise Architecture help balance?","options":["Technology and databases","Business transformation and operational efficiency","Security and procurement","Stakeholders and vendors"],"correct":1},{"id":10,"day":1,"topic":"Concepts and Enterprise Architecture","q":"An enterprise is best described as:","options":["A cloud platform","A software application","A collection of organizations with common goals","A governance framework"],"correct":2},{"id":11,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Application Architecture describes:","options":["Physical buildings","Applications and interactions","Financial processes","Governance structures"],"correct":1},{"id":12,"day":1,"topic":"Concepts and Enterprise Architecture","q":"What is one major benefit of Enterprise Architecture?","options":["Eliminating all change","More effective strategic decision-making","Removing governance","Eliminating stakeholders"],"correct":1},{"id":13,"day":1,"topic":"Concepts and Enterprise Architecture","q":"Which architecture domain supports deployment of business and application services?","options":["Technology Architecture","Business Architecture","Governance Architecture","Segment Architecture"],"correct":0},{"id":14,"day":1,"topic":"Concepts and Enterprise Architecture","q":"The TOGAF Standard is maintained by:","options":["Gartner","ISO","The Open Group","PMI"],"correct":2},{"id":15,"day":1,"topic":"Concepts and Enterprise Architecture","q":"What does Enterprise Architecture primarily guide?","options":["Testing activities","Effective enterprise change","Procurement only","Budget approvals"],"correct":1},{"id":16,"day":2,"topic":"Enterprise Continuum and Repository","q":"What is the purpose of the Enterprise Continuum?","options":["Replace governance processes","Support reuse and communication","Eliminate architecture repositories","Define procurement models"],"correct":1},{"id":17,"day":2,"topic":"Enterprise Continuum and Repository","q":"Which repository component contains templates and patterns?","options":["Governance Repository","Standards Library","Reference Library","Solutions Landscape"],"correct":2},{"id":18,"day":2,"topic":"Enterprise Continuum and Repository","q":"Which repository component stores approved requirements?","options":["Architecture Requirements Repository","Architecture Landscape","Governance Repository","Standards Library"],"correct":0},{"id":19,"day":2,"topic":"Enterprise Continuum and Repository","q":"The Architecture Landscape represents:","options":["Planned or current assets","Stakeholder concerns only","Security requirements only","Financial metrics"],"correct":0},{"id":20,"day":2,"topic":"Enterprise Continuum and Repository","q":"The Enterprise Continuum includes:","options":["Governance and Compliance Continuum","Architecture and Solutions Continuum","Data and Security Continuum","Risk and Audit Continuum"],"correct":1},{"id":21,"day":2,"topic":"Enterprise Continuum and Repository","q":"What does the Standards Library contain?","options":["Approved standards","Stakeholder maps","Migration plans","Contracts"],"correct":0},{"id":22,"day":2,"topic":"Enterprise Continuum and Repository","q":"Which repository component stores governance records?","options":["Architecture Landscape","Governance Repository","Standards Library","Solutions Landscape"],"correct":1},{"id":23,"day":2,"topic":"Enterprise Continuum and Repository","q":"The Solutions Landscape contains:","options":["Stakeholder concerns","SBBs planned or deployed","Architecture principles","Architecture contracts"],"correct":1},{"id":24,"day":2,"topic":"Enterprise Continuum and Repository","q":"The Architecture Repository is part of:","options":["Enterprise Repository","Data Repository","Security Framework","Migration Plan"],"correct":0},{"id":25,"day":2,"topic":"Enterprise Continuum and Repository","q":"What is one purpose of the Enterprise Continuum?","options":["Eliminate ambiguity","Remove standards","Eliminate governance","Replace repositories"],"correct":0},{"id":26,"day":2,"topic":"Enterprise Continuum and Repository","q":"Which repository component stores current and planned architectural assets?","options":["Governance Repository","Standards Library","Architecture Landscape","Reference Library"],"correct":2},{"id":27,"day":2,"topic":"Enterprise Continuum and Repository","q":"The Enterprise Continuum evolves from:","options":["Physical to logical","Governance to implementation","Foundation to organization-specific","Risk to mitigation"],"correct":2},{"id":28,"day":2,"topic":"Enterprise Continuum and Repository","q":"What is the main purpose of the Reference Library?","options":["Risk management","Accelerate creation of architectures","Store governance contracts","Store migration roadmaps"],"correct":1},{"id":29,"day":2,"topic":"Enterprise Continuum and Repository","q":"Which repository component supports compliance activities?","options":["Governance Repository","Solutions Landscape","Standards Library","Data Repository"],"correct":0},{"id":30,"day":2,"topic":"Enterprise Continuum and Repository","q":"Enterprise Architecture practitioners are directly concerned with:","options":["Architecture Landscape and Standards Library","Procurement systems only","Financial tools only","Security audits only"],"correct":0},{"id":31,"day":3,"topic":"Definitions","q":"What is a Deliverable?","options":["An approved architecture work product","A stakeholder map","A governance process","A technology standard"],"correct":0},{"id":32,"day":3,"topic":"Definitions","q":"What is a Gap?","options":["A migration plan","A governance issue","A difference between two states","A technology component"],"correct":2},{"id":33,"day":3,"topic":"Definitions","q":"What is a Stakeholder?","options":["A project methodology","An interested individual or organization","A technology service","A repository component"],"correct":1},{"id":34,"day":3,"topic":"Definitions","q":"What is a Transition Architecture?","options":["The final architecture state","An intermediate architecture state","A governance framework","A repository model"],"correct":1},{"id":35,"day":3,"topic":"Definitions","q":"What is a Requirement?","options":["A governance principle","A testable and measurable need","A roadmap","A repository standard"],"correct":1},{"id":36,"day":3,"topic":"Definitions","q":"What best describes an Artifact?","options":["A migration roadmap","An architectural work product describing an aspect of architecture","A governance process","A procurement model"],"correct":1},{"id":37,"day":3,"topic":"Definitions","q":"What is Baseline Architecture?","options":["The future state","The approved migration roadmap","The current state architecture","The governance framework"],"correct":2},{"id":38,"day":3,"topic":"Definitions","q":"What is Target Architecture?","options":["The existing architecture","The future state architecture","The governance process","The compliance review"],"correct":1},{"id":39,"day":3,"topic":"Definitions","q":"Which term describes an ability possessed by an organization?","options":["Requirement","Stakeholder","Capability","Gap"],"correct":2},{"id":40,"day":3,"topic":"Definitions","q":"What is a Work Package?","options":["A governance structure","A set of actions to achieve objectives","A stakeholder matrix","A standards repository"],"correct":1},{"id":41,"day":3,"topic":"Definitions","q":"What best describes Architecture Vision?","options":["A detailed coding plan","A high-level description of the target architecture","A governance contract","A migration schedule"],"correct":1},{"id":42,"day":3,"topic":"Definitions","q":"What is Architecture Landscape?","options":["Planned and current architectural assets","A governance committee","A migration roadmap","A testing framework"],"correct":0},{"id":43,"day":3,"topic":"Definitions","q":"What is a Metamodel?","options":["A security framework","A model describing entities and relationships","A migration technique","A compliance process"],"correct":1},{"id":44,"day":3,"topic":"Definitions","q":"What best describes Architecture Framework?","options":["A conceptual structure to govern architecture","A software platform","A database tool","A procurement process"],"correct":0},{"id":45,"day":3,"topic":"Definitions","q":"What is an Enterprise according to TOGAF?","options":["A cloud solution","A collection of organizations with common goals","A governance repository","A software architecture"],"correct":1},{"id":46,"day":3,"topic":"Definitions","q":"Which term describes the formal review and approval status of a document?","options":["Approved","Artifact","Transition","Capability"],"correct":0},{"id":47,"day":3,"topic":"Definitions","q":"What best describes a Role?","options":["A repository standard","Expected behavior of an actor","A migration phase","A risk category"],"correct":1},{"id":48,"day":3,"topic":"Definitions","q":"What is Segment Architecture?","options":["Detailed description of an enterprise area","A governance repository","A technology component","A stakeholder concern"],"correct":0},{"id":49,"day":3,"topic":"Definitions","q":"What is Strategic Architecture?","options":["Executive-level long-term architecture view","A compliance process","A software solution","A database standard"],"correct":0},{"id":50,"day":3,"topic":"Definitions","q":"What best describes Technology Architecture?","options":["Business processes only","Technology services and infrastructure","Stakeholder communication","Procurement governance"],"correct":1},{"id":51,"day":3,"topic":"Definitions","q":"What is Modeling?","options":["Eliminating governance","Building models for understanding and clarity","A migration activity","A standards process"],"correct":1},{"id":52,"day":3,"topic":"Definitions","q":"What best describes Business Architecture?","options":["Multi-dimensional business views and relationships","Hardware infrastructure","Database schemas only","Security frameworks only"],"correct":0},{"id":53,"day":3,"topic":"Definitions","q":"What is Data Architecture?","options":["Application deployment","Structure of logical and physical data assets","Governance process","Procurement standards"],"correct":1},{"id":54,"day":3,"topic":"Definitions","q":"Which term refers to the future architecture state being developed?","options":["Baseline Architecture","Target Architecture","Governance Architecture","Segment Architecture"],"correct":1},{"id":55,"day":3,"topic":"Definitions","q":"What best describes Application Architecture?","options":["Blueprint of applications and interactions","Physical hardware layout","Governance roadmap","Procurement framework"],"correct":0},{"id":56,"day":4,"topic":"Preliminary and Phase A","q":"What is a Deliverable?","options":["An approved architecture work product","A stakeholder map","A governance process","A technology standard"],"correct":0},{"id":57,"day":4,"topic":"Preliminary and Phase A","q":"What is a Gap?","options":["A migration plan","A governance issue","A difference between two states","A technology component"],"correct":2},{"id":58,"day":4,"topic":"Preliminary and Phase A","q":"What is a Stakeholder?","options":["A project methodology","An interested individual or organization","A technology service","A repository component"],"correct":1},{"id":59,"day":4,"topic":"Preliminary and Phase A","q":"What is a Transition Architecture?","options":["The final architecture state","An intermediate architecture state","A governance framework","A repository model"],"correct":1},{"id":60,"day":4,"topic":"Preliminary and Phase A","q":"What is a Requirement?","options":["A governance principle","A testable and measurable need","A roadmap","A repository standard"],"correct":1},{"id":61,"day":4,"topic":"Preliminary and Phase A","q":"What is the purpose of the Preliminary Phase?","options":["Implementation governance","Architecture capability creation","Migration planning","Solution delivery"],"correct":1},{"id":62,"day":4,"topic":"Preliminary and Phase A","q":"Which ADM phase defines the Architecture Vision?","options":["Preliminary","Phase A","Phase B","Phase C"],"correct":1},{"id":63,"day":4,"topic":"Preliminary and Phase A","q":"Which ADM phase identifies stakeholders?","options":["Phase A","Phase C","Phase E","Phase G"],"correct":0},{"id":64,"day":4,"topic":"Preliminary and Phase A","q":"What document defines the scope and approach of architecture work?","options":["Compliance Assessment","Statement of Architecture Work","Migration Roadmap","Architecture Contract"],"correct":1},{"id":65,"day":4,"topic":"Preliminary and Phase A","q":"Architecture Vision is:","options":["A detailed implementation schedule","A high-level aspirational view","A governance repository","A testing plan"],"correct":1},{"id":66,"day":5,"topic":"Phases B, C, and D","q":"Which phase develops Business Architecture?","options":["Phase A","Phase B","Phase C","Phase D"],"correct":1},{"id":67,"day":5,"topic":"Phases B, C, and D","q":"Which phase develops Data and Application Architectures?","options":["Phase B","Phase C","Phase D","Phase E"],"correct":1},{"id":68,"day":5,"topic":"Phases B, C, and D","q":"Which phase develops Technology Architecture?","options":["Phase B","Phase C","Phase D","Phase E"],"correct":2},{"id":69,"day":5,"topic":"Phases B, C, and D","q":"Technology Architecture includes:","options":["Stakeholder analysis","Technology infrastructure and services","Financial governance","Procurement approvals"],"correct":1},{"id":70,"day":5,"topic":"Phases B, C, and D","q":"Application Architecture describes:","options":["Business capabilities only","Applications and interactions","Risk management","Governance controls"],"correct":1},{"id":71,"day":6,"topic":"Phases E and F","q":"Which phase identifies delivery vehicles?","options":["Phase D","Phase E","Phase F","Phase G"],"correct":1},{"id":72,"day":6,"topic":"Phases E and F","q":"Which phase finalizes the migration plan?","options":["Phase E","Phase F","Phase G","Phase H"],"correct":1},{"id":73,"day":6,"topic":"Phases E and F","q":"Migration Planning focuses on:","options":["Governance reviews","Moving Baseline to Target","Stakeholder communication only","Application testing"],"correct":1},{"id":74,"day":6,"topic":"Phases E and F","q":"What is a roadmap used for?","options":["Compliance management","Planning transition activities","Risk elimination","Security reviews"],"correct":1},{"id":75,"day":6,"topic":"Phases E and F","q":"Phase E is primarily associated with:","options":["Architecture governance","Opportunities and Solutions","Requirements management","Architecture change management"],"correct":1},{"id":76,"day":7,"topic":"Governance and Requirements","q":"Which ADM phase provides implementation oversight?","options":["Phase F","Phase G","Phase H","Preliminary"],"correct":1},{"id":77,"day":7,"topic":"Governance and Requirements","q":"Which ADM phase manages architecture changes?","options":["Phase F","Phase G","Phase H","Phase A"],"correct":2},{"id":78,"day":7,"topic":"Governance and Requirements","q":"Requirements Management is:","options":["A standalone project","A continuous ADM activity","A governance repository","A migration technique"],"correct":1},{"id":79,"day":7,"topic":"Governance and Requirements","q":"What is the purpose of Architecture Governance?","options":["Eliminate risks","Direct and control architecture activity","Replace stakeholders","Control procurement only"],"correct":1},{"id":80,"day":7,"topic":"Governance and Requirements","q":"What does the Architecture Board support?","options":["Software testing","Architecture governance","Database administration","Infrastructure deployment"],"correct":1},{"id":81,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"What is one purpose of the Enterprise Continuum?","options":["Replace architecture governance","Support communication and reuse","Eliminate standards","Replace stakeholders"],"correct":1},{"id":82,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"Which repository component stores governance activity records?","options":["Standards Library","Governance Repository","Architecture Landscape","Solutions Landscape"],"correct":1},{"id":83,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"The Architecture Requirements Repository stores:","options":["Stakeholder contracts","Approved architecture requirements","Technology standards","Security controls"],"correct":1},{"id":84,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"What is the role of the Standards Library?","options":["Store templates","Store standards for compliance","Store migration plans","Store stakeholder concerns"],"correct":1},{"id":85,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"Which repository component stores reusable patterns?","options":["Reference Library","Governance Repository","Solutions Landscape","Architecture Landscape"],"correct":0},{"id":86,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"The Solutions Continuum relates to:","options":["Governance activities","Solution implementations","Stakeholder analysis","Compliance assessments"],"correct":1},{"id":87,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"Architecture Governance primarily supports:","options":["Procurement only","Directing and controlling architecture activities","Database administration","Testing activities"],"correct":1},{"id":88,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"What does an Architecture Board support?","options":["Compliance and governance","Infrastructure deployment","Database optimization","Financial planning"],"correct":0},{"id":89,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"What best describes Compliance Assessment?","options":["Validation of architecture conformance","Security testing","Project planning","Data migration"],"correct":0},{"id":90,"day":9,"topic":"Enterprise Continuum, Repository, and Governance","q":"What is an Architecture Contract?","options":["A migration roadmap","Formal agreement governing implementation","A repository standard","A stakeholder matrix"],"correct":1},{"id":91,"day":10,"topic":"ADM Intensive Practice","q":"Which ADM phase develops Business Architecture?","options":["Phase A","Phase B","Phase C","Phase D"],"correct":1},{"id":92,"day":10,"topic":"ADM Intensive Practice","q":"Which ADM phase develops Technology Architecture?","options":["Phase B","Phase C","Phase D","Phase E"],"correct":2},{"id":93,"day":10,"topic":"ADM Intensive Practice","q":"Which phase identifies delivery vehicles?","options":["Phase D","Phase E","Phase F","Phase G"],"correct":1},{"id":94,"day":10,"topic":"ADM Intensive Practice","q":"Which phase finalizes migration planning?","options":["Phase E","Phase F","Phase G","Phase H"],"correct":1},{"id":95,"day":10,"topic":"ADM Intensive Practice","q":"Which phase provides implementation oversight?","options":["Phase E","Phase F","Phase G","Phase H"],"correct":2},{"id":96,"day":10,"topic":"ADM Intensive Practice","q":"Which phase manages architecture changes?","options":["Phase G","Phase H","Preliminary","Phase A"],"correct":1},{"id":97,"day":10,"topic":"ADM Intensive Practice","q":"Which ADM phase identifies stakeholders?","options":["Preliminary","Phase A","Phase C","Phase F"],"correct":1},{"id":98,"day":10,"topic":"ADM Intensive Practice","q":"Requirements Management is:","options":["A one-time activity","Continuous across ADM phases","Part of governance only","Optional"],"correct":1},{"id":99,"day":10,"topic":"ADM Intensive Practice","q":"What is the purpose of the Preliminary Phase?","options":["Migration planning","Establish Architecture Capability","Compliance assessment","Data modeling"],"correct":1},{"id":100,"day":10,"topic":"ADM Intensive Practice","q":"Phase C develops:","options":["Governance structures","Business capability maps","Data and Application Architectures","Technology standards"],"correct":2},{"id":101,"day":10,"topic":"ADM Intensive Practice","q":"Phase A includes:","options":["Migration planning","Architecture Vision","Technology Architecture","Gap mitigation"],"correct":1},{"id":102,"day":10,"topic":"ADM Intensive Practice","q":"What is the purpose of Phase F?","options":["Requirements management","Migration planning","Governance oversight","Stakeholder analysis"],"correct":1},{"id":103,"day":10,"topic":"ADM Intensive Practice","q":"Which ADM phase focuses on opportunities and solutions?","options":["Phase D","Phase E","Phase G","Phase H"],"correct":1},{"id":104,"day":10,"topic":"ADM Intensive Practice","q":"Implementation Governance is associated with:","options":["Phase A","Phase D","Phase G","Phase H"],"correct":2},{"id":105,"day":10,"topic":"ADM Intensive Practice","q":"Which ADM phase creates the Architecture Vision?","options":["Preliminary","Phase A","Phase B","Phase E"],"correct":1},{"id":106,"day":11,"topic":"Gap Analysis, Risk, and Architecture Content","q":"What is the purpose of Gap Analysis?","options":["Replace governance","Identify differences between Baseline and Target","Define stakeholders","Create migration contracts"],"correct":1},{"id":107,"day":11,"topic":"Gap Analysis, Risk, and Architecture Content","q":"What best describes Risk Management?","options":["Elimination of uncertainty","Balance between positive and negative outcomes","Compliance validation","Stakeholder governance"],"correct":1},{"id":108,"day":11,"topic":"Gap Analysis, Risk, and Architecture Content","q":"Residual Risk refers to:","options":["Risk before mitigation","Risk after mitigation","Governance risk","Procurement risk"],"correct":1},{"id":109,"day":11,"topic":"Gap Analysis, Risk, and Architecture Content","q":"What is an Artifact?","options":["Architecture work product","Governance process","Security control","Stakeholder requirement"],"correct":0},{"id":110,"day":11,"topic":"Gap Analysis, Risk, and Architecture Content","q":"What best describes a Deliverable?","options":["Formal approved architecture work product","Temporary draft","Migration phase","Risk control"],"correct":0}]
+;
+
+const DAY_META = {
+  1:{title:"Conceptos y Enterprise Architecture", hours:"2h"},
+  2:{title:"Enterprise Continuum y Repository", hours:"2.5h"},
+  3:{title:"Definiciones clave", hours:"3h"},
+  4:{title:"Preliminary y Phase A", hours:"3h"},
+  5:{title:"Phases B, C y D", hours:"3h"},
+  6:{title:"Phases E y F", hours:"3h"},
+  7:{title:"Governance y Requirements", hours:"2h"},
+  9:{title:"Enterprise Continuum, Repository y Governance", hours:"3h"},
+  10:{title:"ADM — práctica intensiva", hours:"3h"},
+  11:{title:"Gap Analysis, Risk y Architecture Content", hours:"2h"}
+};
+const OFFICIAL_QUESTIONS = [{"unit":0,"unitName":"Unit 0 — Certification","q":"Which of the following describes the TOGAF Enterprise Architecture Part 1 examination?","options":["It is an open-book examination.","It has 40 multiple-choice questions.","The exam policy requires you to wait 60 days before a retake.","It contains at least four (4) questions related to product management."],"correct":1,"explain":"The TOGAF Enterprise Architecture Part 1 examination has 40 multiple-choice questions. It is closed-book. The policy requires one month before a retake."},{"unit":0,"unitName":"Unit 0 — Certification","q":"Which of the following is the prerequisite for taking this certification?","options":["AEA membership","ITIL Foundation","TOGAF 9 Foundation","None required"],"correct":3,"explain":"There is no prerequisite qualification required for TOGAF Enterprise Architecture Foundation."},{"unit":0,"unitName":"Unit 0 — Certification","q":"Which of the following is a learning unit topic included in the TOGAF Enterprise Architecture Foundation syllabus?","options":["Architecture Governance","Digital Infrastructure","Interoperability Requirements","Value Streams"],"correct":0,"explain":"Architecture Governance is a topic in the TOGAF Enterprise Architecture Foundation syllabus."},{"unit":0,"unitName":"Unit 0 — Certification","q":"Which of the following describes the retake policy for the TOGAF Enterprise Architecture Part 1 examination?","options":["You must wait seven (7) days before a retake.","You can retake the exam immediately.","You must wait one (1) month before a retake.","You must wait three (3) weeks before a retake."],"correct":2,"explain":"The Open Group certification policy requires that candidates wait one month before a retake."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Which of the following best describes why the TOGAF Standard is suitable as a framework for Enterprise Architecture?","options":["It de-risks a technically complex process.","It contains an extensive body of knowledge called the TOGAF Library.","The TOGAF documentation includes the universal concepts of Enterprise Architecture.","It enables more effective decision-making by business leaders."],"correct":0,"explain":"Developing and sustaining an Enterprise Architecture is a technically complex process which involves many stakeholders and decision processes in the organization. Adopting the TOGAF Standard as a framework provides a standardized approach and de-risks the activity."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Complete the sentence: Three of the four architecture domains that are commonly accepted as subsets of an overall Enterprise Architecture are …","options":["Baseline, Transition, Target.","Data, Application, Technology.","Capability, Segment, Strategic.","Abstract, Logical, Physical."],"correct":1,"explain":"Data, Application, and Technology are three of the four architecture domains that are commonly accepted as subsets of an overall Enterprise Architecture. The other is Business."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Which architecture abstraction level answers why an enterprise undertakes architecture work, and what is the scope of work?","options":["Conceptual","Contextual","Logical","Physical"],"correct":1,"explain":"Contextual includes understanding the environment in which an enterprise operates and the context in which architecture work is planned and executed. It answers why an enterprise undertakes architecture work, what is the scope of work, and the motivation in terms of goals, drivers, and objectives."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Which of the following is a structural framework that allows an enterprise to distinguish between different types of architectural assets?","options":["Architecture Framework","Architecture Repository","Governance Repository","Strategic Architecture"],"correct":1,"explain":"The TOGAF Standard provides a structural framework for an Architecture Repository that allows an enterprise to distinguish between different types of architectural assets that exist at different levels of abstraction in the organization."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Which of the following is a purpose of gap analysis?","options":["Assessing readiness for change within an Enterprise Architecture team","Documenting a categorization framework to structure architecture views","Identifying shortfalls between Baseline and Target Architectures","Finding a balance between positive and negative outcomes"],"correct":2,"explain":"Gap analysis is a technique used in the ADM to validate an architecture that is being developed. It is usually the final step within a phase. The basic premise is to highlight a shortfall between the Baseline Architecture and the Target Architecture; that is, items that have been deliberately omitted, accidentally left out, or not yet defined."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Complete the sentence: The Enterprise Continuum provides a classification for …","options":["architecture and solution artifacts.","architecture views and viewpoints.","risk categorizations.","services and information systems."],"correct":0,"explain":"The Enterprise Continuum provides a classification for architecture and solution artifacts, both internal and external to the Architecture Repository, as they evolve from generic Foundation Architectures to Organization-Specific Architectures."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Which does the TOGAF Standard define as a collection of organizations that have common goals?","options":["An architecture","An enterprise","A federation","A system"],"correct":1,"explain":"The TOGAF Standard considers an \"enterprise\" to be any collection of organizations that have common goals."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Complete the sentence: The Enterprise Metamodel defines …","options":["a categorization model used to structure the Architecture Description.","a structural model for an Architecture Repository.","the assets in use by the enterprise as a structural model.","the types of entities used in models describing the enterprise."],"correct":3,"explain":"The Enterprise Metamodel defines the types of entities to appear in the models that describe the enterprise, together with the relationships between these entities."},{"unit":1,"unitName":"Unit 1 — Concepts","q":"Complete the sentence: Risk management is …","options":["a categorization model used prior to determining mitigating actions.","about predicting future shortfalls in a Target Architecture.","striking a balance between positive and negative outcomes.","the effect of uncertainty on objectives."],"correct":2,"explain":"Risk management is about striking a balance between positive and negative outcomes resulting from the realization of either opportunities or threats."},{"unit":2,"unitName":"Unit 2 — Definitions","q":"Which of the following is defined as the highest level (typically) of description of an organization and typically covers all missions and functions?","options":["Business Architecture","Digital Architecture","Enterprise","Target Architecture"],"correct":2,"explain":"Enterprise is defined as the highest level (typically) of description of an organization and typically covers all missions and functions. An enterprise will often span multiple organizations."},{"unit":2,"unitName":"Unit 2 — Definitions","q":"Which of the following is defined as a specification that has been formally reviewed and agreed upon, that thereafter serves as the basis for further development?","options":["Baseline","Deliverable","Requirement","Work package"],"correct":0,"explain":"Baseline is defined as a specification that has been formally reviewed and agreed upon, that thereafter serves as the basis for further development or change and that can be changed only through formal change control procedures or a type of procedure such as configuration management."},{"unit":2,"unitName":"Unit 2 — Definitions","q":"Which of the following is defined as the fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution?","options":["Architecture","Architecture domain","Architecture Framework","Architecture model"],"correct":0,"explain":"Architecture is defined as the fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution."},{"unit":2,"unitName":"Unit 2 — Definitions","q":"What is defined as the statement of difference between two states?","options":["Architecture","Gap","Requirement","Work package"],"correct":1,"explain":"Gap is defined as the statement of difference between two states. It is used in the context of gap analysis, where the difference between the Baseline and Target Architecture is identified."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Which of the ADM phases finalizes a detailed plan for moving from the Baseline Architecture to the Target Architecture?","options":["Phase B: Business Architecture","Phase C: Information Systems Architectures","Phase E: Opportunities and Solutions","Phase F: Migration Planning"],"correct":3,"explain":"Phase F: Migration Planning provides guidance on how to move from the Baseline to the Target Architectures by finalizing a detailed Implementation and Migration Plan."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Which of the ADM phases includes customization of the TOGAF framework and definition of Architecture Principles?","options":["Phase A: Architecture Vision","Phase C: Information Systems Architectures","Phase F: Migration Planning","Preliminary Phase"],"correct":3,"explain":"The Preliminary Phase includes the preparation and initiation activities required to create an Architecture Capability, as well as customization of the TOGAF framework and definition of Architecture Principles."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Complete the sentence: A document that is under development that has not undergone any formal review is known as …","options":["a draft document.","an initial document.","a preliminary document.","an unapproved document."],"correct":0,"explain":"In the ADM, documents which are under development and have not undergone any formal review and approval process are designated \"draft\". Documents which have been reviewed and approved are designated \"approved\" in accordance with the organization's governance practices. Approved does not necessarily mean finalized."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Complete the sentence: The purpose of the Preliminary Phase is to …","options":["develop the Enterprise Architecture Capability.","identify key stakeholders.","obtain agreement on a summary of the target.","manage architecture requirements."],"correct":0,"explain":"The purpose of the Preliminary Phase is to develop the Enterprise Architecture Capability. It is designed as a customized journey of the TOGAF ADM."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Consider the TOGAF ADM graphic of the architecture development cycle (the circular diagram with Preliminary at the top and Phases A–H around a central hub). Select the correct phase names corresponding to Labels 1, 2, and 3 (1=H position, 2=Requirements Management/center, 3=E position).","options":["1-Architecture Vision, 2-Preliminary, 3-Business Architecture","1-Implementation Governance, 2-Requirements Management, 3-Opportunities and Solutions","1-Business Architecture, 2-Technology Architecture, 3-Migration Planning","1-Architecture Change Management, 2-Opportunities and Solutions, 3-Architecture Governance"],"correct":1,"explain":""},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"When scoping an architecture, which aspect of the scope describes the level of detail the architecting effort should go to?","options":["Architecture domains","Breadth","Depth","Time period requirements."],"correct":2,"explain":"Depth describes to what level of detail the architecting effort should go."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Which of the following best describes the ADM graphic?","options":["An activity sequence for developing an Enterprise Architecture","A process model for developing mandatory inputs and outputs","A representation showing information flows","A set of practices for managing requirements"],"correct":2,"explain":"The TOGAF ADM should not be understood as a process model. The ADM graphic is a stylized representation showing essential information flows and is not a representation of activity sequence."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Why are architecture alternatives and trade-offs needed?","options":["To present different possibilities with their trade-offs to stakeholders","To enable the architects to decide which alternative to select","To confirm that the baseline architecture is correct","To follow the set of practices for managing requirements"],"correct":0,"explain":"By identifying and considering alternative Target Architectures an understanding can be built of the different possibilities and trade-offs identified between the alternatives. Presenting different alternatives and trade-offs to stakeholders helps architects to extract hidden agendas, principles, and requirements that could impact the final Target Architecture."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Which concept does the TOGAF Standard provide to govern the Target Architecture?","options":["Architecture Continuum","Architecture Development Method (ADM)","Architecture Landscape","Architecture Project"],"correct":3,"explain":"The TOGAF Standard provides a key concept to govern the Target Architecture: the Architecture Project. It is used to direct and control the Enterprise Architecture team to address issues in the enterprise. An Architecture Project starts with a Request for Architecture Work, and the primary control is Architecture Project Management using the Statement of Architecture Work."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Which of the following is an objective of Phase A?","options":["To review the stakeholders, their requirements, and priorities","To develop a high-level vision of the business value to be delivered","To generate and gain consensus on an outline Implementation and Migration Strategy","To formulate recommendations for each implementation project"],"correct":1,"explain":"An objective of Phase A is to develop a high-level aspirational vision of the capabilities and business value to be delivered as a result of the proposed Enterprise Architecture."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Consider the following ADM phases objectives: 1) Ensure that the Architecture Governance framework is executed. 2) Perform appropriate Architecture Governance functions for the solution and any implementation-driven architecture Change Requests. 3) Ensure that the business value and cost of work packages and Transition Architectures is understood by key stakeholders. 4) Ensure that the architecture development cycle is maintained. Which phase does each objective match?","options":["1-E, 2-F, 3-F, 4-H","1-F, 2-G, 3-G, 4-F","1-F, 2-H, 3-H, 4-G","1-H, 2-G, 3-F, 4-H"],"correct":3,"explain":""},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Refer to the following table — Phase: ?, Output & Outcome: A set of domain architectures approved by the stakeholders for the problem being addressed, with a set of gaps, and work to close the gaps understood by the stakeholders. Which ADM phase(s) does this describe?","options":["Phase A","Phases B, C, and D","Phase E","Phase F"],"correct":1,"explain":"Phases B, C, and D."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Consider the following statements about ADM phases: 1) Develop the Enterprise Architecture capability. 2) Develop a set of work packages that address the set of gaps, with an indication of value produced and effort required. 3) Complete the projects to implement the changes necessary to reach the adjusted target state. Which phase(s) does each statement match?","options":["1-Preliminary, 2-E, 3-G","1-A, 2F, 3-H","1-A, 2-E, 3-G","1-H, 2-A, 3-G"],"correct":0,"explain":"1-Preliminary, 2-E, 3-G."},{"unit":3,"unitName":"Unit 3 — Introduction to the ADM","q":"Which ADM phase aligns with Agile Software Development?","options":["Preliminary","Phase A","Phase E","Phase G"],"correct":3,"explain":"The TOGAF Standard aligns with Agile development in Phase G, where a project is implemented."},{"unit":4,"unitName":"Unit 4 — ADM Techniques","q":"Which of the following is a purpose of Architecture Principles?","options":["Assessing readiness for change","Enabling decision-making","Identifying business requirements","Mitigating risk"],"correct":1,"explain":"Architecture Principles can be used for enabling decision-making — it is important to set precedence during trade-off discussions and authority of \"tie-breaking\" if it must occur."},{"unit":4,"unitName":"Unit 4 — ADM Techniques","q":"Which part of the TOGAF template for defining Architecture Principles should highlight the business benefits of adhering to the principle?","options":["Implications","Name","Rationale","Statement"],"correct":2,"explain":"The rationale should highlight the business benefits of adhering to the principle."},{"unit":4,"unitName":"Unit 4 — ADM Techniques","q":"Where can the Business Scenario method be used to define requirements for establishing an Enterprise Architecture Capability?","options":["Preliminary Phase","Phase A: Architecture Vision","Phase F: Migration Planning","Phase H: Architecture Change Management"],"correct":0,"explain":"The Business Scenario method can be used in the Preliminary Phase to define requirements for establishing an Enterprise Architecture Capability."},{"unit":4,"unitName":"Unit 4 — ADM Techniques","q":"Which of the following statements best describes the Business Transformation Readiness Assessment technique?","options":["A technique to define the degree to which information and services are to be shared.","A technique used to identify and understand the business requirements an architecture must address.","A technique used to develop general rules and guidelines for the architecture being developed.","A technique used to understand the readiness of an organization to accept change."],"correct":3,"explain":"The Business Transformation Readiness Assessment technique is a technique for determining the readiness of an organization to accept change."},{"unit":4,"unitName":"Unit 4 — ADM Techniques","q":"Consider the TOGAF Standard structure: the Fundamental Content sits alongside a guidance component that explains how to use and adapt the standard for specific needs. What is that guidance component?","options":["ADM Techniques","TOGAF Standard","TOGAF Library","TOGAF Series Guides"],"correct":3,"explain":"The TOGAF Series Guides are the guidance part of the TOGAF Standard, providing material on how to use and adapt the TOGAF Standard for specific needs."},{"unit":4,"unitName":"Unit 4 — ADM Techniques","q":"Where are risks identified as part of the initial Business Transformation Readiness Assessment?","options":["Preliminary","Phase A","Phase B","Phase E"],"correct":1,"explain":"Risks are identified in Phase A as part of the initial Business Transformation Readiness Assessment."},{"unit":5,"unitName":"Unit 5 — Applying the ADM","q":"Where in the TOGAF Standard is detailed guidance on applying the standard provided?","options":["TOGAF Fundamental Content","TOGAF Library","TOGAF Series Guides","TOGAF White Papers"],"correct":2,"explain":"Detailed guidance on how to apply the standard is provided within the TOGAF Series Guides, designed to support practitioners who need further explanation or more detail than that provided in the TOGAF Fundamental Content."},{"unit":5,"unitName":"Unit 5 — Applying the ADM","q":"Complete the sentence: The levels of the Architecture Landscape are Strategic, Segment, and …","options":["Capability.","Enterprise.","Solution.","Transition."],"correct":0,"explain":"The TOGAF framework uses the concept of the Architecture Landscape to refer to the complete set of descriptions for the Enterprise Architecture. The levels of the Architecture Landscape are Strategic, Segment, and Capability."},{"unit":5,"unitName":"Unit 5 — Applying the ADM","q":"Why does partitioning help simplify the development of an Enterprise Architecture?","options":["It is designed to support organizations with more than 75 architects.","To enable different teams to work on different elements of an architecture.","To match the levels and concepts of the Architecture Continuum.","By providing a standard partitioning model for adoption."],"correct":1,"explain":"Different teams need to work on different elements of architecture at the same time; partitions allow specific groups of architects to own and develop specific elements of the architecture."},{"unit":5,"unitName":"Unit 5 — Applying the ADM","q":"Complete the sentence: The four purposes of Enterprise Architecture that can be used to frame the planning horizon, depth, and breadth of an Architecture Project, and the contents of the Enterprise Architecture Repository, are Architecture to Support Strategy, Portfolio, Project, and …","options":["Capability.","Enterprise.","Segment.","Solution Delivery."],"correct":3,"explain":"The four purposes of Enterprise Architecture are Strategy, Portfolio, Project, and Solution Delivery."},{"unit":6,"unitName":"Unit 6 — Architecture Governance","q":"Which of the following is a responsibility of an Architecture Board?","options":["Allocating resources for architecture projects","Conducting assessments of the maturity level of architecture discipline within the organization","Decision rights about Target Architectures","Establishing targets for re-use of components"],"correct":3,"explain":"One of the responsibilities of the Architecture Board is establishing targets for re-use of components."},{"unit":6,"unitName":"Unit 6 — Architecture Governance","q":"What is the practice by which Enterprise Architectures are managed and controlled at an enterprise-wide level?","options":["Architecture Governance","Corporate Governance","IT Governance","Technology Governance"],"correct":0,"explain":"Architecture Governance is the practice and orientation by which Enterprise Architectures and other architectures are managed and controlled at an enterprise-wide level."},{"unit":6,"unitName":"Unit 6 — Architecture Governance","q":"When considering Architecture Governance, what is the benefit that derives from transparency?","options":["Actions implemented and their decision support will be available for inspection","All parties will have a commitment to adhere to procedures and process","All decision-making will be established so as to minimize conflicts of interest","Groups within the organization are accountable for their actions."],"correct":0,"explain":"Transparency — all actions implemented and their decision support will be available for inspection by authorized organization and provider parties."},{"unit":7,"unitName":"Unit 7 — Architecture Content","q":"Complete the sentence by selecting the applicable pair of words: A(n) … is a representation of a system from the perspective of a(n) …","options":["architecture view, related set of concerns.","architecture viewpoint, architecture view.","concern, architecture view.","architecture, set of elements."],"correct":0,"explain":"An architecture view is a representation of a system from the perspective of a related set of concerns."},{"unit":7,"unitName":"Unit 7 — Architecture Content","q":"Which of the following best describes the purpose of the Request for Architecture Work?","options":["It defines the scope and approach to complete an architecture development cycle.","It is sent from the sponsor and triggers the start of an architecture development cycle.","It provides a high-level aspirational view of the end architecture project.","It provides a schedule for implementation of the Target Architecture."],"correct":1,"explain":"The Request for Architecture Work document is sent from the sponsoring organization to the architecture organization to trigger the start of an architecture development cycle."},{"unit":7,"unitName":"Unit 7 — Architecture Content","q":"Which of the following is created in Phase A with the purpose to agree at the outset what the desired outcome should be for the architecture, so that architects can then focus on the detail necessary to validate feasibility?","options":["Architecture Roadmap","Architecture Contract","Architecture Principles","Architecture Vision"],"correct":3,"explain":"The Architecture Vision is created in Phase A and provides a high-level summary of the changes to the enterprise that will follow from the successful deployment of the Target Architecture."},{"unit":7,"unitName":"Unit 7 — Architecture Content","q":"Which of the following is a package of functionality defined to meet business needs across an organization?","options":["Architecture Description","Building block","Model Kind","System"],"correct":1,"explain":"A building block is a package of functionality defined to meet the business needs across an organization. It may interoperate with other, inter-dependent building blocks."}]
+;
+const UNIT_META = {
+  0:"Certificación", 1:"Concepts", 2:"Definitions", 3:"Introduction to the ADM",
+  4:"ADM Techniques", 5:"Applying the ADM", 6:"Architecture Governance", 7:"Architecture Content"
+};
+const UNIT_ORDER = [0,1,2,3,4,5,6,7];
+
+const DAY_ORDER = [1,2,3,4,5,6,7,9,10,11];
+
+// ---------- reference / chuleta content (from Ciclo_ADM_TOGAF_Resumen.xlsx) ----------
+const REFERENCE = [
+{
+  id:"adm", title:"Ciclo ADM — fases, objetivo y entregables",
+  html:`<table class="ref-table"><tr><th>Fase</th><th>Objetivo principal</th><th>Qué se realiza</th><th>Entregables clave</th></tr>
+  <tr><td class="rf-name">Preliminar</td><td>Preparar la capacidad de Arquitectura Empresarial en la organización</td><td>Definir principios de arquitectura, establecer gobernanza, adaptar TOGAF y definir repositorio</td><td>Principios de Arquitectura, Marco de Gobernanza, Framework adaptado</td></tr>
+  <tr><td class="rf-name">A — Visión de Arquitectura</td><td>Definir la visión y el alcance de la arquitectura</td><td>Identificar interesados, definir alcance, elaborar caso de negocio y obtener aprobación</td><td>Visión de Arquitectura, Declaración de Trabajo de Arquitectura</td></tr>
+  <tr><td class="rf-name">B — Arquitectura de Negocio</td><td>Diseñar cómo debe operar el negocio en el estado futuro</td><td>Modelar procesos, capacidades y estructura; analizar estado actual vs futuro</td><td>Modelos de Arquitectura de Negocio, Análisis de Brechas</td></tr>
+  <tr><td class="rf-name">C — Sistemas de Información</td><td>Diseñar cómo los datos y aplicaciones soportan el negocio</td><td>Definir Arquitectura de Datos y Aplicaciones, analizar interoperabilidad</td><td>Arquitectura de Datos, Arquitectura de Aplicaciones</td></tr>
+  <tr><td class="rf-name">D — Arquitectura Tecnológica</td><td>Diseñar la infraestructura tecnológica que soporta los sistemas</td><td>Definir plataformas, redes, nube, middleware y estándares tecnológicos</td><td>Arquitectura Tecnológica, Estándares Técnicos</td></tr>
+  <tr><td class="rf-name">E — Oportunidades y Soluciones</td><td>Convertir brechas en iniciativas concretas</td><td>Agrupar brechas en paquetes de trabajo y definir roadmap inicial</td><td>Paquetes de Trabajo, Roadmap Inicial</td></tr>
+  <tr><td class="rf-name">F — Planificación de Migración</td><td>Planificar cómo se implementará la arquitectura</td><td>Priorizar iniciativas, analizar dependencias y definir plan detallado</td><td>Plan de Implementación y Migración</td></tr>
+  <tr><td class="rf-name">G — Gobernanza de Implementación</td><td>Asegurar que los proyectos implementen la arquitectura aprobada</td><td>Supervisar proyectos y realizar revisiones de cumplimiento</td><td>Contrato de Arquitectura, Reportes de Cumplimiento</td></tr>
+  <tr><td class="rf-name">H — Gestión del Cambio</td><td>Mantener la arquitectura actualizada frente a cambios</td><td>Evaluar cambios estratégicos y tecnológicos e iniciar nuevo ciclo si aplica</td><td>Solicitudes de Cambio, Evaluaciones de Impacto</td></tr>
+  <tr><td class="rf-name">Req. Management (transversal)</td><td>Administrar y controlar los requisitos durante todo el ciclo</td><td>Mantener trazabilidad y evaluar impactos continuamente</td><td>Repositorio actualizado de Requerimientos</td></tr>
+  </table>`
+},
+{
+  id:"tecnicas", title:"Técnicas que apoyan al ADM",
+  html:`<table class="ref-table"><tr><th>Técnica</th><th>Qué es</th><th>Cuándo se usa más</th></tr>
+  <tr><td class="rf-name">Architecture Principles</td><td>Reglas que guían el diseño. Deben ser entendibles, robustas, completas, consistentes y estables.</td><td>Principalmente en Preliminar, aplican en todo el ciclo</td></tr>
+  <tr><td class="rf-name">Business Scenarios</td><td>Capturan necesidades del negocio y las convierten en requerimientos arquitectónicos.</td><td>Fase A y Fase Preliminar</td></tr>
+  <tr><td class="rf-name">Gap Analysis</td><td>Compara el estado actual (AS-IS) con el futuro (TO-BE); objetiva, trazable, basada en evidencia.</td><td>Fases B, C y D</td></tr>
+  <tr><td class="rf-name">Interoperability</td><td>Capacidad de sistemas y componentes de trabajar juntos de forma coherente.</td><td>Fases A, B, C, D, E y F</td></tr>
+  <tr><td class="rf-name">Business Transformation Readiness Assessment</td><td>Mide si la organización está lista para el cambio: liderazgo, cultura, madurez de procesos, capacidades técnicas, presupuesto, resistencia interna.</td><td>Fase E y F</td></tr>
+  <tr><td class="rf-name">Architecture Risk Management</td><td>Identifica, analiza y mitiga riesgos arquitectónicos; continuo, preventivo y documentado.</td><td>Transversal, sobre todo en A y G</td></tr>
+  </table>`
+},
+{
+  id:"principles", title:"Template de Architecture Principles",
+  html:`<table class="ref-table"><tr><th>Elemento</th><th>Qué significa</th></tr>
+  <tr><td class="rf-name">Name</td><td>Título claro y corto del principio</td></tr>
+  <tr><td class="rf-name">Statement</td><td>Frase formal que expresa la regla</td></tr>
+  <tr><td class="rf-name">Rationale</td><td>Explica por qué existe el principio</td></tr>
+  <tr><td class="rf-name">Implications</td><td>Qué debe hacerse para cumplirlo — el impacto práctico</td></tr>
+  </table>
+  <div class="ref-note"><b>Ejemplo</b> — Name: "Datos como Activo Estratégico". Statement: "Los datos deben ser gestionados como un activo corporativo crítico". Rationale: "La información confiable mejora la toma de decisiones y reduce riesgos operativos". Implications: deben existir responsables de datos, controles de calidad y cumplimiento de estándares de gobierno de datos.</div>`
+},
+{
+  id:"niveles", title:"Niveles y dimensiones de arquitectura",
+  html:`<p style="margin:2px 0 4px;color:var(--ink-soft);">El alcance de una arquitectura (Architecture Landscape) se mide en tres dimensiones:</p>
+  <table class="ref-table"><tr><th>Dimensión</th><th>Qué representa</th><th>Cómo se interpreta</th></tr>
+  <tr><td class="rf-name">Breadth (alcance)</td><td>Qué parte de la empresa está cubierta</td><td>Toda la empresa, un segmento o una capacidad específica</td></tr>
+  <tr><td class="rf-name">Level (nivel)</td><td>Qué tan estratégico o detallado es el contenido</td><td>Alto = estratégico/conceptual; medio = estructural; bajo = detallado</td></tr>
+  <tr><td class="rf-name">Time (tiempo)</td><td>Horizonte temporal de la arquitectura</td><td>Baseline (AS-IS), Transition (intermedio) o Target (TO-BE)</td></tr>
+  </table>
+  <p style="margin:14px 0 4px;color:var(--ink-soft);">Los tres niveles de Architecture Landscape:</p>
+  <div class="ref-grid">
+    <div class="ref-pill"><div class="pt">Enterprise Strategic</div>Dirección estratégica y lineamientos globales. Ej: "el banco será 100% digital en originación".</div>
+    <div class="ref-pill"><div class="pt">Segment Architecture</div>Traduce la estrategia a un área o línea de negocio. Ej: arquitectura del segmento de Créditos.</div>
+    <div class="ref-pill"><div class="pt">Capability Architecture</div>Diseño detallado de una capacidad puntual. Ej: arquitectura del motor de Scoring.</div>
+  </div>`
+},
+{
+  id:"iteracion", title:"Tipos de iteración en el ADM",
+  html:`<table class="ref-table"><tr><th>Tipo</th><th>Qué significa</th><th>Por qué ocurre</th></tr>
+  <tr><td class="rf-name">Dentro de una fase</td><td>Se repite trabajo dentro de la misma fase para refinar el diseño</td><td>Aparecen nuevos requerimientos o ajustes</td></tr>
+  <tr><td class="rf-name">Entre fases</td><td>Se regresa a una fase anterior por algo detectado después</td><td>Inconsistencias descubiertas en fases posteriores</td></tr>
+  <tr><td class="rf-name">Ciclo completo del ADM</td><td>Se vuelve a ejecutar todo el ciclo para evolucionar la arquitectura</td><td>Cambio estratégico o nueva iniciativa</td></tr>
+  <tr><td class="rf-name">Por nivel estratégico</td><td>Se aplica el ADM a nivel corporativo</td><td>Alinear arquitectura con la estrategia institucional</td></tr>
+  <tr><td class="rf-name">Por segmento</td><td>Se aplica el ADM a un dominio específico del negocio</td><td>La transformación se ejecuta por áreas</td></tr>
+  <tr><td class="rf-name">Por capacidad</td><td>Se aplica el ADM a una capacidad puntual</td><td>Se requiere mayor detalle técnico y funcional</td></tr>
+  </table>`
+},
+{
+  id:"propositos", title:"Propósitos de la Enterprise Architecture",
+  html:`<div class="ref-grid">
+    <div class="ref-pill"><div class="pt">Support Strategy</div>Define hacia dónde debe evolucionar la organización y cómo lograrlo (arquitectura objetivo + roadmap).</div>
+    <div class="ref-pill"><div class="pt">Support Portfolio</div>Asegura que programas y proyectos estén alineados con la arquitectura objetivo, priorizando inversión.</div>
+    <div class="ref-pill"><div class="pt">Support Project</div>Define lineamientos y estándares que un proyecto específico debe cumplir.</div>
+    <div class="ref-pill"><div class="pt">Support Solution Delivery</div>Define requisitos arquitectónicos (interoperabilidad, seguridad, escalabilidad) para construir la solución.</div>
+  </div>`
+},
+{
+  id:"governance", title:"Architecture Governance",
+  html:`<table class="ref-table"><tr><th>Concepto</th><th>Explicación</th></tr>
+  <tr><td class="rf-name">Architecture Governance</td><td>Sistema que asegura que la arquitectura definida se implemente y se mantenga alineada — principalmente en Fase G</td></tr>
+  <tr><td class="rf-name">Beneficios</td><td>Reduce riesgos, evita desviaciones, mejora coherencia y protege la inversión estratégica</td></tr>
+  <tr><td class="rf-name">Architecture Board</td><td>Órgano que revisa, aprueba y supervisa decisiones arquitectónicas — Fase Preliminar y G</td></tr>
+  <tr><td class="rf-name">Architecture Contracts</td><td>Acuerdo formal entre Arquitectura y Proyecto sobre qué debe cumplir — Fase G</td></tr>
+  <tr><td class="rf-name">Architecture Compliance</td><td>Proceso de revisión que verifica que un proyecto respete la arquitectura aprobada — Fase G y H</td></tr>
+  </table>
+  <p style="margin:14px 0 4px;color:var(--ink-soft);">Matriz RACI:</p>
+  <div class="ref-grid">
+    <div class="ref-pill"><div class="pt">R — Responsible</div>Quien ejecuta el trabajo. Puede haber varios.</div>
+    <div class="ref-pill"><div class="pt">A — Accountable</div>Quien responde por el resultado. Solo debe haber uno.</div>
+    <div class="ref-pill"><div class="pt">C — Consulted</div>Se le consulta antes de decidir — comunicación bidireccional.</div>
+    <div class="ref-pill"><div class="pt">I — Informed</div>Se le mantiene informado — comunicación unidireccional.</div>
+  </div>`
+},
+{
+  id:"abbsbb", title:"ABB vs SBB",
+  html:`<table class="ref-table"><tr><th></th><th>ABB — Architecture Building Block</th><th>SBB — Solution Building Block</th></tr>
+  <tr><td class="rf-name">Nivel</td><td>Arquitectura</td><td>Implementación</td></tr>
+  <tr><td class="rf-name">Naturaleza</td><td>Conceptual / lógica</td><td>Concreta / tecnológica</td></tr>
+  <tr><td class="rf-name">Define</td><td>Una capacidad o componente necesario</td><td>La solución tecnológica específica</td></tr>
+  <tr><td class="rf-name">Ejemplo</td><td>"Gestión de Recursos Humanos (HCM)"</td><td>"SAP SuccessFactors"</td></tr>
+  </table>
+  <div class="ref-note">Separar ABB y SBB hace que la arquitectura sea independiente del proveedor: cambiar de tecnología implica cambiar la solución, no rediseñar la arquitectura.</div>`
+},
+{
+  id:"glosario", title:"Glosario oficial (TOGAF 10 Standard)",
+  html:`<p style="margin:2px 0 10px;color:var(--ink-soft);">Definiciones textuales de la Unidad 2 del curso oficial — las más precisas para el examen.</p>
+  <table class="ref-table"><tr><th>Término</th><th>Definición oficial</th></tr>
+  <tr><td class="rf-name">Architecture</td><td>The fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution.</td></tr>
+  <tr><td class="rf-name">ADM</td><td>The core of the TOGAF framework — a multi-phase, iterative approach to develop and use an Enterprise Architecture to shape and govern business transformation.</td></tr>
+  <tr><td class="rf-name">Architecture Domain</td><td>The architectural area being considered — Business, Data, Application, and Technology are the four primary domains.</td></tr>
+  <tr><td class="rf-name">Architecture Framework</td><td>A conceptual structure used to plan, develop, implement, govern, and sustain an architecture.</td></tr>
+  <tr><td class="rf-name">Architecture Landscape</td><td>The architectural representation of assets in use, or planned, by the enterprise at particular points in time.</td></tr>
+  <tr><td class="rf-name">Architecture Vision</td><td>A succinct description of the Target Architecture that describes its business value and the changes to the enterprise that will result from its successful deployment.</td></tr>
+  <tr><td class="rf-name">Artifact</td><td>An architectural work product that describes an aspect of the architecture.</td></tr>
+  <tr><td class="rf-name">Baseline</td><td>A specification that has been formally reviewed and agreed upon, that thereafter serves as the basis for further development or change.</td></tr>
+  <tr><td class="rf-name">Capability</td><td>An ability that an organization, person, or system possesses.</td></tr>
+  <tr><td class="rf-name">Deliverable</td><td>An architectural work product that is contractually specified and in turn formally reviewed, agreed, and signed off by the stakeholders.</td></tr>
+  <tr><td class="rf-name">Enterprise</td><td>The highest level (typically) of description of an organization, covering all missions and functions — often spans multiple organizations.</td></tr>
+  <tr><td class="rf-name">Gap</td><td>A statement of difference between two states — used in gap analysis, where the difference between Baseline and Target Architecture is identified.</td></tr>
+  <tr><td class="rf-name">Metamodel</td><td>A model that describes the entities used in building an Architecture Description, their characteristics, and the key relationships between those entities.</td></tr>
+  <tr><td class="rf-name">Modeling</td><td>A technique through construction of models which enables a subject to be represented in a form that enables reasoning, insight, and clarity concerning its essence.</td></tr>
+  <tr><td class="rf-name">Requirement</td><td>A statement of need, which is unambiguous, testable or measurable, and necessary for acceptability.</td></tr>
+  <tr><td class="rf-name">Role</td><td>The usual or expected behavior of an actor, or the part somebody or something plays in a particular process or event.</td></tr>
+  <tr><td class="rf-name">Segment Architecture</td><td>A detailed, formal description of areas within an enterprise, used at the program or portfolio level to organize and align change activity.</td></tr>
+  <tr><td class="rf-name">Stakeholder</td><td>An individual, team, organization, or class thereof, having an interest in a system.</td></tr>
+  <tr><td class="rf-name">Strategic Architecture</td><td>A summary formal description of the enterprise, providing an organizing framework for operational and change activity, and an executive-level, long-term view.</td></tr>
+  <tr><td class="rf-name">Target Architecture</td><td>The description of a future state of the architecture being developed for an organization.</td></tr>
+  <tr><td class="rf-name">Transition Architecture</td><td>A formal description of one state of the architecture at an architecturally significant point in time.</td></tr>
+  <tr><td class="rf-name">Work Package</td><td>A set of actions identified to achieve one or more objectives for the business — can be part of a project, a complete project, or a program.</td></tr>
+  </table>`
+}
+];
+
+// ---------- storage ----------
+const STORE_KEY = "togaf_prep_history_v1";
+function loadHistory(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    return raw ? JSON.parse(raw) : {exam:[], day:{}, general:[]};
+  }catch(e){ return {exam:[], day:{}, general:[]}; }
+}
+function saveHistory(h){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(h)); }catch(e){}
+}
+let HISTORY = loadHistory();
+
+function loadTheme(){
+  try{ return localStorage.getItem("togaf_prep_theme") || "auto"; }catch(e){ return "auto"; }
+}
+function saveTheme(t){
+  try{ localStorage.setItem("togaf_prep_theme", t); }catch(e){}
+}
+function applyTheme(){
+  const t = loadTheme();
+  if(t === "auto"){ document.documentElement.removeAttribute("data-theme"); }
+  else{ document.documentElement.setAttribute("data-theme", t); }
+}
+applyTheme();
+
+// ---------- utils ----------
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function letterFor(i){ return String.fromCharCode(65+i); }
+function fmtTime(sec){
+  const m = Math.floor(sec/60), s = sec%60;
+  return m+":"+String(s).padStart(2,"0");
+}
+function dedupeById(list){
+  const seen = new Set(); const out=[];
+  for(const q of list){ if(!seen.has(q.q)){ seen.add(q.q); out.push(q); } }
+  return out;
+}
+const ALL_PRACTICE_UNIQUE = dedupeById(PRACTICE_QUESTIONS);
+const ALL_POOL_UNIQUE = dedupeById(EXAM_QUESTIONS.concat(ALL_PRACTICE_UNIQUE).concat(OFFICIAL_QUESTIONS));
+
+// ---------- app state / router ----------
+const app = document.getElementById("app");
+let ROUTE = {view:"home"};
+let QUIZ = null; // active quiz state
+
+function go(route){ ROUTE = route; render(); window.scrollTo({top:0, behavior:"instant"}); }
+
+// ---------- quiz engine ----------
+function startQuiz(opts){
+  // opts: {questions, mode: 'exam'|'practice', label, timeLimitSec, dayKey}
+  const questions = opts.randomize === false ? opts.questions : shuffle(opts.questions);
+  QUIZ = {
+    mode: opts.mode,
+    label: opts.label,
+    dayKey: opts.dayKey || null,
+    questions: questions,
+    idx: 0,
+    answers: new Array(questions.length).fill(null),
+    revealed: new Array(questions.length).fill(false),
+    timeLimitSec: opts.timeLimitSec || null,
+    remaining: opts.timeLimitSec || null,
+    startedAt: Date.now(),
+    timerHandle: null
+  };
+  if(QUIZ.timeLimitSec){
+    QUIZ.timerHandle = setInterval(()=>{
+      QUIZ.remaining--;
+      if(QUIZ.remaining <= 0){
+        clearInterval(QUIZ.timerHandle);
+        QUIZ.remaining = 0;
+        finishQuiz();
+        return;
+      }
+      const t = document.getElementById("timerDisplay");
+      if(t){
+        t.textContent = fmtTime(QUIZ.remaining);
+        t.classList.toggle("low", QUIZ.remaining <= 120);
+      }
+    },1000);
+  }
+  go({view:"quiz"});
+}
+
+function selectAnswer(i){
+  if(QUIZ.revealed[QUIZ.idx]) return;
+  QUIZ.answers[QUIZ.idx] = i;
+  if(QUIZ.mode === "practice"){
+    QUIZ.revealed[QUIZ.idx] = true;
+  }
+  renderQuizBody();
+}
+
+function nextQuestion(){
+  if(QUIZ.idx < QUIZ.questions.length - 1){
+    QUIZ.idx++;
+    render();
+  } else {
+    finishQuiz();
+  }
+}
+function prevQuestion(){
+  if(QUIZ.idx > 0){ QUIZ.idx--; render(); }
+}
+
+function finishQuiz(){
+  if(QUIZ.timerHandle) clearInterval(QUIZ.timerHandle);
+  let score = 0;
+  QUIZ.questions.forEach((q,i)=>{ if(QUIZ.answers[i] === q.correct) score++; });
+  QUIZ.score = score;
+  QUIZ.finishedAt = Date.now();
+
+  const entry = {
+    date: new Date().toISOString(),
+    score: score,
+    total: QUIZ.questions.length,
+    seconds: Math.round((QUIZ.finishedAt - QUIZ.startedAt)/1000)
+  };
+  if(QUIZ.mode === "exam"){
+    HISTORY.exam.unshift(entry);
+    HISTORY.exam = HISTORY.exam.slice(0,8);
+  } else if(QUIZ.dayKey){
+    if(!HISTORY.day[QUIZ.dayKey]) HISTORY.day[QUIZ.dayKey] = [];
+    HISTORY.day[QUIZ.dayKey].unshift(entry);
+    HISTORY.day[QUIZ.dayKey] = HISTORY.day[QUIZ.dayKey].slice(0,5);
+  } else {
+    HISTORY.general.unshift(entry);
+    HISTORY.general = HISTORY.general.slice(0,8);
+  }
+  saveHistory(HISTORY);
+  go({view:"results"});
+}
+
+function retryWrongOnly(){
+  const wrong = [];
+  QUIZ.questions.forEach((q,i)=>{ if(QUIZ.answers[i] !== q.correct) wrong.push(q); });
+  if(wrong.length === 0) return;
+  startQuiz({questions:wrong, mode:"practice", label:"Repaso de fallos · " + QUIZ.label, randomize:true});
+}
+
+// ---------- render ----------
+function render(){
+  if(ROUTE.view === "home") return renderHome();
+  if(ROUTE.view === "daySelect") return renderDaySelect();
+  if(ROUTE.view === "unitSelect") return renderUnitSelect();
+  if(ROUTE.view === "generalPicker") return renderGeneralPicker();
+  if(ROUTE.view === "quiz") return renderQuiz();
+  if(ROUTE.view === "results") return renderResults();
+  if(ROUTE.view === "reference") return renderReference();
+}
+
+function topbar(){
+  return `
+  <div class="topbar">
+    <div class="brand" onclick="go({view:'home'})">
+      <span class="mark">A–H</span>
+      <div>
+        <h1>TOGAF 10 · Foundation</h1>
+        <div class="sub">Preparación de examen — Nivel 1</div>
+      </div>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()">${loadTheme()==='dark' ? '☾ oscuro' : loadTheme()==='light' ? '☀ claro' : '◐ auto'}</button>
+  </div>`;
+}
+function toggleTheme(){
+  const cur = loadTheme();
+  const next = cur === "auto" ? "dark" : cur === "dark" ? "light" : "auto";
+  saveTheme(next);
+  applyTheme();
+  render();
+}
+
+function bestOf(list){
+  if(!list || list.length===0) return null;
+  return list.reduce((best,e)=> (e.score/e.total > best.score/best.total ? e : best), list[0]);
+}
+
+function renderHome(){
+  const examBest = bestOf(HISTORY.exam);
+  const genBest = bestOf(HISTORY.general);
+  const daysDone = Object.keys(HISTORY.day).length;
+
+  app.innerHTML = `
+    ${topbar()}
+    <div class="hero">
+      <div class="kicker">Basado en tu material de estudio · ${EXAM_QUESTIONS.length} de examen real + ${ALL_PRACTICE_UNIQUE.length} de práctica + ${OFFICIAL_QUESTIONS.length} oficiales del curso</div>
+      <h2>Preparate para el examen TOGAF 10 Foundation.</h2>
+      <p>Elegí un modo: el examen simulado real con las 40 preguntas oficiales, la práctica guiada día a día, o un repaso mezclado a tu medida.</p>
+    </div>
+
+    <div class="modes">
+      <div class="mode-card" onclick="openExam()">
+        <div class="num">01</div>
+        <div class="body">
+          <h3>Examen simulado</h3>
+          <p>Las 40 preguntas del examen real que ya rendiste, en orden aleatorio y con 60 minutos en contra — igual que el examen oficial.</p>
+          <div class="meta">
+            <span>40 preguntas</span><span>60 min</span><span>sin pistas</span>
+            ${examBest ? `<span>mejor: ${examBest.score}/${examBest.total} (${Math.round(100*examBest.score/examBest.total)}%)</span>` : ""}
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-card green" onclick="go({view:'daySelect'})">
+        <div class="num">02</div>
+        <div class="body">
+          <h3>Práctica por día</h3>
+          <p>El plan de 14 días de tu guía de estudio, con las preguntas de cada día y corrección inmediata con explicación.</p>
+          <div class="meta">
+            <span>10 días con preguntas</span><span>corrección inmediata</span>
+            <span>${daysDone} día(s) practicados</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-card purple" onclick="go({view:'unitSelect'})">
+        <div class="num">03</div>
+        <div class="body">
+          <h3>Preguntas oficiales del curso</h3>
+          <p>Las preguntas de "Unit Test" del material oficial del curso (el PDF de 438 páginas), organizadas por las 8 unidades del temario, con la explicación tal como la da el curso.</p>
+          <div class="meta">
+            <span>${OFFICIAL_QUESTIONS.length} preguntas</span><span>8 unidades</span><span>corrección inmediata</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-card gold" onclick="go({view:'generalPicker'})">
+        <div class="num">04</div>
+        <div class="body">
+          <h3>Repaso mezclado</h3>
+          <p>Todo el banco de preguntas (examen + práctica + oficiales del curso) mezclado, en la cantidad que elijas. Ideal para repasos rápidos.</p>
+          <div class="meta">
+            <span>${ALL_POOL_UNIQUE.length} preguntas en total</span>
+            ${genBest ? `<span>último repaso: ${genBest.score}/${genBest.total}</span>` : ""}
+          </div>
+        </div>
+      </div>
+      <div class="mode-card ref" onclick="go({view:'reference'})">
+        <div class="num">05</div>
+        <div class="body">
+          <h3>Chuleta de repaso</h3>
+          <p>Referencia rápida: ciclo ADM, técnicas, niveles de arquitectura, gobernanza, ABB vs SBB, template de Architecture Principles y glosario oficial.</p>
+          <div class="meta">
+            <span>9 secciones</span><span>sin preguntas — solo consulta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="history">
+      <h4>Historial reciente</h4>
+      ${renderHistoryRows()}
+    </div>
+    <footer class="note">Preguntas de examen tomadas de tu intento real · preguntas de práctica de tu guía de 14 días</footer>
+  `;
+}
+
+function renderHistoryRows(){
+  const rows = [];
+  HISTORY.exam.slice(0,3).forEach(e=> rows.push({label:"Examen simulado", e}));
+  HISTORY.general.slice(0,2).forEach(e=> rows.push({label:"Repaso mezclado", e}));
+  Object.keys(HISTORY.day).forEach(k=>{
+    const e = HISTORY.day[k][0];
+    if(e) rows.push({label:"Día " + k + " — " + (DAY_META[k]?DAY_META[k].title:""), e});
+  });
+  rows.sort((a,b)=> new Date(b.e.date) - new Date(a.e.date));
+  if(rows.length === 0) return `<div class="empty">Todavía no hiciste ningún intento. Arrancá con el modo que prefieras.</div>`;
+  return rows.slice(0,6).map(r=>{
+    const pct = Math.round(100*r.e.score/r.e.total);
+    return `<div class="row"><span>${r.label}</span><span class="mono">${r.e.score}/${r.e.total} · ${pct}%</span></div>`;
+  }).join("");
+}
+
+function openExam(){
+  startQuiz({
+    questions: EXAM_QUESTIONS,
+    mode: "exam",
+    label: "Examen simulado",
+    timeLimitSec: 60*60
+  });
+}
+
+function renderDaySelect(){
+  app.innerHTML = `
+    ${topbar()}
+    <button class="back-link" onclick="go({view:'home'})">← Volver</button>
+    <div class="section-title">Práctica por día</div>
+    <div class="section-desc">Mismo orden que tu plan de 14 días. Cada pregunta se corrige al toque, con la explicación.</div>
+    <div class="daylist">
+      ${DAY_ORDER.map(d=>{
+        const qs = PRACTICE_QUESTIONS.filter(q=>q.day===d);
+        const meta = DAY_META[d];
+        const best = bestOf(HISTORY.day[d]);
+        return `<div class="day-row" onclick="openDay(${d})">
+          <div class="day-badge">${d}</div>
+          <div>
+            <div class="dtitle">${meta.title}</div>
+            <div class="dcount">${qs.length} preguntas · ${meta.hours} de estudio sugerido</div>
+          </div>
+          ${best ? `<div class="dbest">${best.score}/${best.total}</div>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  `;
+}
+function openDay(d){
+  const qs = PRACTICE_QUESTIONS.filter(q=>q.day===d);
+  startQuiz({questions:qs, mode:"practice", label:"Día " + d + " — " + DAY_META[d].title, dayKey:d});
+}
+
+function renderUnitSelect(){
+  app.innerHTML = `
+    ${topbar()}
+    <button class="back-link" onclick="go({view:'home'})">← Volver</button>
+    <div class="section-title">Preguntas oficiales del curso</div>
+    <div class="section-desc">Las preguntas de "Unit Test" tal como aparecen en el material oficial del curso, unidad por unidad.</div>
+    <div class="daylist">
+      ${UNIT_ORDER.map(u=>{
+        const qs = OFFICIAL_QUESTIONS.filter(q=>q.unit===u);
+        const best = bestOf(HISTORY.day["u"+u]);
+        return `<div class="day-row" onclick="openUnit(${u})">
+          <div class="day-badge">${u}</div>
+          <div>
+            <div class="dtitle">${UNIT_META[u]}</div>
+            <div class="dcount">${qs.length} pregunta${qs.length===1?'':'s'}</div>
+          </div>
+          ${best ? `<div class="dbest">${best.score}/${best.total}</div>` : ""}
+        </div>`;
+      }).join("")}
+    </div>
+  `;
+}
+function openUnit(u){
+  const qs = OFFICIAL_QUESTIONS.filter(q=>q.unit===u);
+  startQuiz({questions:qs, mode:"practice", label:"Unit " + u + " — " + UNIT_META[u], dayKey:"u"+u});
+}
+
+function renderGeneralPicker(){
+  const pool = ALL_POOL_UNIQUE.length;
+  app.innerHTML = `
+    ${topbar()}
+    <button class="back-link" onclick="go({view:'home'})">← Volver</button>
+    <div class="section-title">Repaso mezclado</div>
+    <div class="section-desc">Preguntas al azar de todo el banco (${pool} en total), con corrección inmediata. Elegí cuántas querés.</div>
+    <div class="count-picker">
+      ${[10,20,30,pool].map(n=> `<button onclick="openGeneral(${n})">${n===pool? 'Todas ('+pool+')' : n + ' preguntas'}</button>`).join("")}
+    </div>
+  `;
+}
+function openGeneral(n){
+  const pool = shuffle(ALL_POOL_UNIQUE);
+  const qs = pool.slice(0, n);
+  startQuiz({questions:qs, mode:"practice", label:"Repaso mezclado (" + n + ")"});
+}
+
+function renderReference(){
+  app.innerHTML = `
+    ${topbar()}
+    <button class="back-link" onclick="go({view:'home'})">← Volver</button>
+    <div class="section-title">Chuleta de repaso</div>
+    <div class="section-desc">Resumen en español de tu material — tocá cada sección para abrirla.</div>
+    <div id="refList">
+      ${REFERENCE.map((s,i)=>`
+        <div class="ref-section" id="ref-${s.id}">
+          <div class="ref-head" onclick="toggleRef('${s.id}')">
+            <div class="rbadge">${String(i+1).padStart(2,'0')}</div>
+            <h3>${s.title}</h3>
+            <div class="chev">›</div>
+          </div>
+          <div class="ref-body">${s.html}</div>
+        </div>
+      `).join("")}
+    </div>
+    <footer class="note">Contenido tomado de tu resumen del Ciclo ADM (Excel)</footer>
+  `;
+}
+function toggleRef(id){
+  const el = document.getElementById('ref-'+id);
+  if(el) el.classList.toggle('open');
+}
+
+function renderQuiz(){
+  app.innerHTML = `
+    ${topbar()}
+    <button class="back-link" onclick="confirmExit()">← Salir</button>
+    <div id="quizBody"></div>
+  `;
+  renderQuizBody();
+}
+function confirmExit(){
+  if(confirm("¿Salir del intento actual? No se va a guardar el puntaje.")){
+    if(QUIZ && QUIZ.timerHandle) clearInterval(QUIZ.timerHandle);
+    go({view:"home"});
+  }
+}
+
+function renderQuizBody(){
+  const body = document.getElementById("quizBody");
+  if(!body) return;
+  const q = QUIZ.questions[QUIZ.idx];
+  const selected = QUIZ.answers[QUIZ.idx];
+  const revealed = QUIZ.revealed[QUIZ.idx];
+  const pct = Math.round(100*(QUIZ.idx)/QUIZ.questions.length);
+
+  const optsHtml = q.options.map((opt,i)=>{
+    let cls = "opt";
+    if(revealed){
+      cls += " disabled";
+      if(i === q.correct) cls += " correct";
+      else if(i === selected) cls += " incorrect";
+    } else if(i === selected){
+      cls += " selected";
+    }
+    return `<div class="${cls}" onclick="selectAnswer(${i})">
+      <div class="letter">${letterFor(i)}</div>
+      <div>${opt}</div>
+    </div>`;
+  }).join("");
+
+  let feedbackHtml = "";
+  if(revealed){
+    const ok = selected === q.correct;
+    feedbackHtml = `<div class="feedback ${ok?'ok':'bad'}">
+      <b>${ok ? 'Correcto' : 'Incorrecto'}</b> — la respuesta es "${letterFor(q.correct)}. ${q.options[q.correct]}"
+      ${q.explain ? `<div class="explain">${q.explain}</div>` : ""}
+    </div>`;
+  }
+
+  body.innerHTML = `
+    <div class="quiz-head">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>${QUIZ.label}</span><span>Pregunta ${QUIZ.idx+1} de ${QUIZ.questions.length}</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      </div>
+      ${QUIZ.timeLimitSec ? `<div class="timer ${QUIZ.remaining<=120?'low':''}" id="timerDisplay">${fmtTime(QUIZ.remaining)}</div>` : ""}
+    </div>
+    <div class="qcard">
+      <div class="qtag">Pregunta ${QUIZ.idx+1}</div>
+      <p class="qtext">${q.q}</p>
+      <div class="options">${optsHtml}</div>
+      ${feedbackHtml}
+    </div>
+    <div class="quiz-actions">
+      ${QUIZ.idx>0 ? `<button class="btn ghost" onclick="prevQuestion()">Anterior</button>` : ""}
+      <button class="btn" id="nextBtn" ${(QUIZ.mode==='practice' && !revealed) || (QUIZ.mode==='exam' && selected===null && false) ? 'disabled' : ''} onclick="nextQuestion()">
+        ${QUIZ.idx === QUIZ.questions.length-1 ? 'Finalizar' : 'Siguiente'}
+      </button>
+    </div>
+  `;
+
+  if(QUIZ.mode === 'practice'){
+    const nb = document.getElementById('nextBtn');
+    if(nb) nb.disabled = !revealed;
+  }
+}
+
+function renderResults(){
+  const pct = Math.round(100*QUIZ.score/QUIZ.questions.length);
+  const pass = pct >= 55;
+  const wrongCount = QUIZ.questions.length - QUIZ.score;
+
+  const reviewHtml = QUIZ.questions.map((q,i)=>{
+    const sel = QUIZ.answers[i];
+    const ok = sel === q.correct;
+    if(ok) return "";
+    return `<div class="review-item">
+      <div class="rq">${i+1}. ${q.q}</div>
+      <div class="ra wrong">${sel!==null ? letterFor(sel)+'. '+q.options[sel] : '(sin responder)'}</div>
+      <div class="ra correct">${letterFor(q.correct)}. ${q.options[q.correct]}</div>
+      ${q.explain ? `<div class="explain">${q.explain}</div>` : ""}
+    </div>`;
+  }).join("");
+
+  app.innerHTML = `
+    ${topbar()}
+    <div class="section-title">Resultado — ${QUIZ.label}</div>
+    <div class="score-wrap">
+      <div class="score-ring ${pass?'pass':'fail'}">${pct}%</div>
+      <div class="score-info">
+        <h3>${QUIZ.score} / ${QUIZ.questions.length} correctas</h3>
+        <p>${pass ? 'Vas bien encaminado — seguí reforzando lo que falló.' : 'Todavía falta repaso. Enfocate en las preguntas falladas abajo.'}</p>
+        <div class="pct">tiempo: ${fmtTime(Math.round((QUIZ.finishedAt-QUIZ.startedAt)/1000))} · ${wrongCount} para repasar</div>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      ${wrongCount>0 ? `<button class="btn" onclick="retryWrongOnly()">Repasar solo los fallados (${wrongCount})</button>` : ""}
+      <button class="btn ghost" onclick="go({view:'home'})">Volver al inicio</button>
+    </div>
+
+    ${wrongCount>0 ? `<div class="section-title" style="margin-top:30px;font-size:17px;">Revisión de errores</div>
+    <div class="review-list">${reviewHtml}</div>` : `<p style="margin-top:24px;color:var(--ink-soft);">¡Todas correctas! No hay nada para repasar en este intento.</p>`}
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
