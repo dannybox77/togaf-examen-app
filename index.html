@@ -441,14 +441,15 @@ footer.note{
   font-size:13.5px;
 }
 .ref-section.open .ref-body{display:block;}
-.ref-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+.ref-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;table-layout:fixed;}
 .ref-table th{
   text-align:left;font-family:'IBM Plex Mono', monospace;font-weight:600;font-size:11px;
   color:var(--ink-soft);padding:6px 8px;border-bottom:1.5px solid var(--line-strong);
 }
-.ref-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+.ref-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;}
 .ref-table tr:last-child td{border-bottom:none;}
-.ref-table td.rf-name{font-weight:600;white-space:nowrap;color:var(--blue);}
+.ref-table td.rf-name{font-weight:600;color:var(--blue);}
+.ref-body{overflow-x:auto;}
 .ref-note{
   background:var(--paper-2);border-left:3px solid var(--gold);
   padding:10px 12px;border-radius:0 var(--radius) var(--radius) 0;
