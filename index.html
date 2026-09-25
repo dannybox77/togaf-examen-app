@@ -498,44 +498,71 @@ const DAY_ORDER = [1,2,3,4,5,6,7,9,10,11];
 // ---------- reference / chuleta content (from Ciclo_ADM_TOGAF_Resumen.xlsx) ----------
 const REFERENCE = [
 {
-  id:"adm", title:"Ciclo ADM — fases, objetivo y entregables",
-  html:`<table class="ref-table"><tr><th>Fase</th><th>Objetivo principal</th><th>Qué se realiza</th><th>Entregables clave</th></tr>
-  <tr><td class="rf-name">Preliminar</td><td>Preparar la capacidad de Arquitectura Empresarial en la organización</td><td>Definir principios de arquitectura, establecer gobernanza, adaptar TOGAF y definir repositorio</td><td>Principios de Arquitectura, Marco de Gobernanza, Framework adaptado</td></tr>
-  <tr><td class="rf-name">A — Visión de Arquitectura</td><td>Definir la visión y el alcance de la arquitectura</td><td>Identificar interesados, definir alcance, elaborar caso de negocio y obtener aprobación</td><td>Visión de Arquitectura, Declaración de Trabajo de Arquitectura</td></tr>
-  <tr><td class="rf-name">B — Arquitectura de Negocio</td><td>Diseñar cómo debe operar el negocio en el estado futuro</td><td>Modelar procesos, capacidades y estructura; analizar estado actual vs futuro</td><td>Modelos de Arquitectura de Negocio, Análisis de Brechas</td></tr>
-  <tr><td class="rf-name">C — Sistemas de Información</td><td>Diseñar cómo los datos y aplicaciones soportan el negocio</td><td>Definir Arquitectura de Datos y Aplicaciones, analizar interoperabilidad</td><td>Arquitectura de Datos, Arquitectura de Aplicaciones</td></tr>
-  <tr><td class="rf-name">D — Arquitectura Tecnológica</td><td>Diseñar la infraestructura tecnológica que soporta los sistemas</td><td>Definir plataformas, redes, nube, middleware y estándares tecnológicos</td><td>Arquitectura Tecnológica, Estándares Técnicos</td></tr>
-  <tr><td class="rf-name">E — Oportunidades y Soluciones</td><td>Convertir brechas en iniciativas concretas</td><td>Agrupar brechas en paquetes de trabajo y definir roadmap inicial</td><td>Paquetes de Trabajo, Roadmap Inicial</td></tr>
-  <tr><td class="rf-name">F — Planificación de Migración</td><td>Planificar cómo se implementará la arquitectura</td><td>Priorizar iniciativas, analizar dependencias y definir plan detallado</td><td>Plan de Implementación y Migración</td></tr>
-  <tr><td class="rf-name">G — Gobernanza de Implementación</td><td>Asegurar que los proyectos implementen la arquitectura aprobada</td><td>Supervisar proyectos y realizar revisiones de cumplimiento</td><td>Contrato de Arquitectura, Reportes de Cumplimiento</td></tr>
-  <tr><td class="rf-name">H — Gestión del Cambio</td><td>Mantener la arquitectura actualizada frente a cambios</td><td>Evaluar cambios estratégicos y tecnológicos e iniciar nuevo ciclo si aplica</td><td>Solicitudes de Cambio, Evaluaciones de Impacto</td></tr>
-  <tr><td class="rf-name">Req. Management (transversal)</td><td>Administrar y controlar los requisitos durante todo el ciclo</td><td>Mantener trazabilidad y evaluar impactos continuamente</td><td>Repositorio actualizado de Requerimientos</td></tr>
+  id:"adm", title:"Ciclo ADM — fases, objetivo y entregables", titleEn:"ADM Cycle — Phases, Objective and Deliverables",
+  htmlEs:`<table class="ref-table"><tr><th>Fase</th><th>Objetivo principal</th><th>Qué se realiza</th><th>Entregables clave</th></tr>
+  <tr><td class="rf-name">Preliminary Phase (Fase Preliminar)</td><td>Preparar la capacidad de Arquitectura Empresarial en la organización</td><td>Definir principios de arquitectura, establecer gobernanza, adaptar TOGAF y definir repositorio</td><td>Principios de Arquitectura, Marco de Gobernanza, Framework adaptado</td></tr>
+  <tr><td class="rf-name">Phase A — Architecture Vision (Visión de Arquitectura)</td><td>Definir la visión y el alcance de la arquitectura</td><td>Identificar interesados, definir alcance, elaborar caso de negocio y obtener aprobación</td><td>Architecture Vision, Statement of Architecture Work</td></tr>
+  <tr><td class="rf-name">Phase B — Business Architecture (Arquitectura de Negocio)</td><td>Diseñar cómo debe operar el negocio en el estado futuro</td><td>Modelar procesos, capacidades y estructura; analizar estado actual vs futuro</td><td>Modelos de Business Architecture, Gap Analysis</td></tr>
+  <tr><td class="rf-name">Phase C — Information Systems Architectures (Sistemas de Información)</td><td>Diseñar cómo los datos y aplicaciones soportan el negocio</td><td>Definir Data Architecture y Application Architecture, analizar interoperabilidad</td><td>Data Architecture, Application Architecture</td></tr>
+  <tr><td class="rf-name">Phase D — Technology Architecture (Arquitectura Tecnológica)</td><td>Diseñar la infraestructura tecnológica que soporta los sistemas</td><td>Definir plataformas, redes, nube, middleware y estándares tecnológicos</td><td>Technology Architecture, Estándares Técnicos</td></tr>
+  <tr><td class="rf-name">Phase E — Opportunities and Solutions (Oportunidades y Soluciones)</td><td>Convertir brechas en iniciativas concretas</td><td>Agrupar brechas en paquetes de trabajo y definir roadmap inicial</td><td>Work Packages, Roadmap inicial</td></tr>
+  <tr><td class="rf-name">Phase F — Migration Planning (Planificación de Migración)</td><td>Planificar cómo se implementará la arquitectura</td><td>Priorizar iniciativas, analizar dependencias y definir plan detallado</td><td>Implementation and Migration Plan</td></tr>
+  <tr><td class="rf-name">Phase G — Implementation Governance (Gobernanza de Implementación)</td><td>Asegurar que los proyectos implementen la arquitectura aprobada</td><td>Supervisar proyectos y realizar revisiones de cumplimiento</td><td>Architecture Contract, Reportes de Cumplimiento</td></tr>
+  <tr><td class="rf-name">Phase H — Architecture Change Management (Gestión del Cambio)</td><td>Mantener la arquitectura actualizada frente a cambios</td><td>Evaluar cambios estratégicos y tecnológicos e iniciar nuevo ciclo si aplica</td><td>Change Requests, Evaluaciones de Impacto</td></tr>
+  <tr><td class="rf-name">Requirements Management (transversal)</td><td>Administrar y controlar los requisitos durante todo el ciclo</td><td>Mantener trazabilidad y evaluar impactos continuamente</td><td>Repositorio actualizado de Requerimientos</td></tr>
+  </table>`,
+  html:`<table class="ref-table"><tr><th>Phase</th><th>Main Objective</th><th>What Happens</th><th>Key Deliverables</th></tr>
+  <tr><td class="rf-name">Preliminary Phase</td><td>Prepare the organization's Enterprise Architecture Capability</td><td>Define architecture principles, establish governance, tailor the TOGAF framework, and define the repository</td><td>Architecture Principles, Governance Framework, tailored Framework</td></tr>
+  <tr><td class="rf-name">Phase A — Architecture Vision</td><td>Define the vision and scope of the architecture</td><td>Identify stakeholders, define scope, develop the business case, and obtain approval</td><td>Architecture Vision, Statement of Architecture Work</td></tr>
+  <tr><td class="rf-name">Phase B — Business Architecture</td><td>Design how the business should operate in the future state</td><td>Model processes, capabilities, and structure; analyze current vs. future state</td><td>Business Architecture models, Gap Analysis results</td></tr>
+  <tr><td class="rf-name">Phase C — Information Systems Architectures</td><td>Design how data and applications support the business</td><td>Define Data Architecture and Application Architecture, analyze interoperability</td><td>Data Architecture, Application Architecture</td></tr>
+  <tr><td class="rf-name">Phase D — Technology Architecture</td><td>Design the technology infrastructure that supports the systems</td><td>Define platforms, networks, cloud, middleware, and technology standards</td><td>Technology Architecture, Technical Standards</td></tr>
+  <tr><td class="rf-name">Phase E — Opportunities and Solutions</td><td>Turn gaps into concrete initiatives</td><td>Group gaps into work packages and define an initial roadmap</td><td>Work Packages, initial Roadmap</td></tr>
+  <tr><td class="rf-name">Phase F — Migration Planning</td><td>Plan how the architecture will be implemented</td><td>Prioritize initiatives, analyze dependencies, and define a detailed plan</td><td>Implementation and Migration Plan</td></tr>
+  <tr><td class="rf-name">Phase G — Implementation Governance</td><td>Ensure projects implement the approved architecture</td><td>Oversee projects and conduct compliance reviews</td><td>Architecture Contract, Compliance Reports</td></tr>
+  <tr><td class="rf-name">Phase H — Architecture Change Management</td><td>Keep the architecture up to date as changes occur</td><td>Assess strategic and technology changes and start a new cycle if needed</td><td>Change Requests, Impact Assessments</td></tr>
+  <tr><td class="rf-name">Requirements Management (cross-cutting)</td><td>Manage and control requirements throughout the cycle</td><td>Maintain traceability and continuously assess impacts</td><td>Updated Requirements Repository</td></tr>
   </table>`
 },
 {
-  id:"tecnicas", title:"Técnicas que apoyan al ADM",
-  html:`<table class="ref-table"><tr><th>Técnica</th><th>Qué es</th><th>Cuándo se usa más</th></tr>
-  <tr><td class="rf-name">Architecture Principles</td><td>Reglas que guían el diseño. Deben ser entendibles, robustas, completas, consistentes y estables.</td><td>Principalmente en Preliminar, aplican en todo el ciclo</td></tr>
-  <tr><td class="rf-name">Business Scenarios</td><td>Capturan necesidades del negocio y las convierten en requerimientos arquitectónicos.</td><td>Fase A y Fase Preliminar</td></tr>
-  <tr><td class="rf-name">Gap Analysis</td><td>Compara el estado actual (AS-IS) con el futuro (TO-BE); objetiva, trazable, basada en evidencia.</td><td>Fases B, C y D</td></tr>
-  <tr><td class="rf-name">Interoperability</td><td>Capacidad de sistemas y componentes de trabajar juntos de forma coherente.</td><td>Fases A, B, C, D, E y F</td></tr>
-  <tr><td class="rf-name">Business Transformation Readiness Assessment</td><td>Mide si la organización está lista para el cambio: liderazgo, cultura, madurez de procesos, capacidades técnicas, presupuesto, resistencia interna.</td><td>Fase E y F</td></tr>
-  <tr><td class="rf-name">Architecture Risk Management</td><td>Identifica, analiza y mitiga riesgos arquitectónicos; continuo, preventivo y documentado.</td><td>Transversal, sobre todo en A y G</td></tr>
+  id:"tecnicas", title:"Técnicas que apoyan al ADM", titleEn:"Techniques that Support the ADM",
+  htmlEs:`<table class="ref-table"><tr><th>Técnica</th><th>Qué es</th><th>Cuándo se usa más</th></tr>
+  <tr><td class="rf-name">Architecture Principles (Principios de Arquitectura)</td><td>Reglas que guían el diseño. Deben ser entendibles, robustas, completas, consistentes y estables.</td><td>Principalmente en Preliminar, aplican en todo el ciclo</td></tr>
+  <tr><td class="rf-name">Business Scenarios (Escenarios de Negocio)</td><td>Capturan necesidades del negocio y las convierten en requerimientos arquitectónicos.</td><td>Fase A y Fase Preliminar</td></tr>
+  <tr><td class="rf-name">Gap Analysis (Análisis de Brechas)</td><td>Compara el estado actual (AS-IS) con el futuro (TO-BE); objetiva, trazable, basada en evidencia.</td><td>Fases B, C y D</td></tr>
+  <tr><td class="rf-name">Interoperability (Interoperabilidad)</td><td>Capacidad de sistemas y componentes de trabajar juntos de forma coherente.</td><td>Fases A, B, C, D, E y F</td></tr>
+  <tr><td class="rf-name">Business Transformation Readiness Assessment (Evaluación de Preparación para la Transformación)</td><td>Mide si la organización está lista para el cambio: liderazgo, cultura, madurez de procesos, capacidades técnicas, presupuesto, resistencia interna.</td><td>Fase E y F</td></tr>
+  <tr><td class="rf-name">Architecture Risk Management (Gestión de Riesgos de Arquitectura)</td><td>Identifica, analiza y mitiga riesgos arquitectónicos; continuo, preventivo y documentado.</td><td>Transversal, sobre todo en A y G</td></tr>
+  </table>`,
+  html:`<table class="ref-table"><tr><th>Technique</th><th>What it is</th><th>When it's used most</th></tr>
+  <tr><td class="rf-name">Architecture Principles</td><td>Rules that guide design decisions. They should be understandable, robust, complete, consistent, and stable.</td><td>Mainly in the Preliminary Phase, applied throughout the cycle</td></tr>
+  <tr><td class="rf-name">Business Scenarios</td><td>Capture business needs and translate them into architectural requirements.</td><td>Phase A and Preliminary Phase</td></tr>
+  <tr><td class="rf-name">Gap Analysis</td><td>Compares the current state (AS-IS) with the future state (TO-BE); objective, traceable, evidence-based.</td><td>Phases B, C, and D</td></tr>
+  <tr><td class="rf-name">Interoperability</td><td>The ability of systems and components to work together coherently.</td><td>Phases A, B, C, D, E, and F</td></tr>
+  <tr><td class="rf-name">Business Transformation Readiness Assessment</td><td>Measures whether the organization is ready for change: leadership, culture, process maturity, technical capabilities, budget, internal resistance.</td><td>Phase E and F</td></tr>
+  <tr><td class="rf-name">Architecture Risk Management</td><td>Identifies, analyzes, and mitigates architectural risks; continuous, preventive, and documented.</td><td>Cross-cutting, especially in Phase A and Phase G</td></tr>
   </table>`
 },
 {
-  id:"principles", title:"Template de Architecture Principles",
-  html:`<table class="ref-table"><tr><th>Elemento</th><th>Qué significa</th></tr>
-  <tr><td class="rf-name">Name</td><td>Título claro y corto del principio</td></tr>
-  <tr><td class="rf-name">Statement</td><td>Frase formal que expresa la regla</td></tr>
-  <tr><td class="rf-name">Rationale</td><td>Explica por qué existe el principio</td></tr>
-  <tr><td class="rf-name">Implications</td><td>Qué debe hacerse para cumplirlo — el impacto práctico</td></tr>
+  id:"principles", title:"Template de Architecture Principles", titleEn:"Architecture Principles Template",
+  htmlEs:`<table class="ref-table"><tr><th>Elemento</th><th>Qué significa</th></tr>
+  <tr><td class="rf-name">Name (Nombre)</td><td>Título claro y corto del principio</td></tr>
+  <tr><td class="rf-name">Statement (Declaración)</td><td>Frase formal que expresa la regla</td></tr>
+  <tr><td class="rf-name">Rationale (Justificación)</td><td>Explica por qué existe el principio</td></tr>
+  <tr><td class="rf-name">Implications (Implicaciones)</td><td>Qué debe hacerse para cumplirlo — el impacto práctico</td></tr>
   </table>
-  <div class="ref-note"><b>Ejemplo</b> — Name: "Datos como Activo Estratégico". Statement: "Los datos deben ser gestionados como un activo corporativo crítico". Rationale: "La información confiable mejora la toma de decisiones y reduce riesgos operativos". Implications: deben existir responsables de datos, controles de calidad y cumplimiento de estándares de gobierno de datos.</div>`
+  <div class="ref-note"><b>Ejemplo</b> — Name: "Datos como Activo Estratégico". Statement: "Los datos deben ser gestionados como un activo corporativo crítico". Rationale: "La información confiable mejora la toma de decisiones y reduce riesgos operativos". Implications: deben existir responsables de datos, controles de calidad y cumplimiento de estándares de gobierno de datos.</div>`,
+  html:`<table class="ref-table"><tr><th>Element</th><th>What it means</th></tr>
+  <tr><td class="rf-name">Name</td><td>A clear, short title for the principle</td></tr>
+  <tr><td class="rf-name">Statement</td><td>A formal sentence that expresses the rule</td></tr>
+  <tr><td class="rf-name">Rationale</td><td>Explains why the principle exists</td></tr>
+  <tr><td class="rf-name">Implications</td><td>What must be done to comply with it — the practical impact</td></tr>
+  </table>
+  <div class="ref-note"><b>Example</b> — Name: "Data as a Strategic Asset". Statement: "Data must be managed as a critical corporate asset". Rationale: "Reliable information improves decision-making and reduces operational risk". Implications: data owners must be assigned, quality controls must exist, and projects must comply with data governance standards.</div>`
 },
 {
-  id:"niveles", title:"Niveles y dimensiones de arquitectura",
-  html:`<p style="margin:2px 0 4px;color:var(--ink-soft);">El alcance de una arquitectura (Architecture Landscape) se mide en tres dimensiones:</p>
+  id:"niveles", title:"Niveles y dimensiones de arquitectura", titleEn:"Architecture Levels and Dimensions",
+  htmlEs:`<p style="margin:2px 0 4px;color:var(--ink-soft);">El alcance de una arquitectura (Architecture Landscape) se mide en tres dimensiones:</p>
   <table class="ref-table"><tr><th>Dimensión</th><th>Qué representa</th><th>Cómo se interpreta</th></tr>
   <tr><td class="rf-name">Breadth (alcance)</td><td>Qué parte de la empresa está cubierta</td><td>Toda la empresa, un segmento o una capacidad específica</td></tr>
   <tr><td class="rf-name">Level (nivel)</td><td>Qué tan estratégico o detallado es el contenido</td><td>Alto = estratégico/conceptual; medio = estructural; bajo = detallado</td></tr>
@@ -543,39 +570,65 @@ const REFERENCE = [
   </table>
   <p style="margin:14px 0 4px;color:var(--ink-soft);">Los tres niveles de Architecture Landscape:</p>
   <div class="ref-grid">
-    <div class="ref-pill"><div class="pt">Enterprise Strategic</div>Dirección estratégica y lineamientos globales. Ej: "el banco será 100% digital en originación".</div>
-    <div class="ref-pill"><div class="pt">Segment Architecture</div>Traduce la estrategia a un área o línea de negocio. Ej: arquitectura del segmento de Créditos.</div>
-    <div class="ref-pill"><div class="pt">Capability Architecture</div>Diseño detallado de una capacidad puntual. Ej: arquitectura del motor de Scoring.</div>
+    <div class="ref-pill"><div class="pt">Enterprise Strategic (Estratégico Empresarial)</div>Dirección estratégica y lineamientos globales. Ej: "el banco será 100% digital en originación".</div>
+    <div class="ref-pill"><div class="pt">Segment Architecture (Arquitectura de Segmento)</div>Traduce la estrategia a un área o línea de negocio. Ej: arquitectura del segmento de Créditos.</div>
+    <div class="ref-pill"><div class="pt">Capability Architecture (Arquitectura de Capacidad)</div>Diseño detallado de una capacidad puntual. Ej: arquitectura del motor de Scoring.</div>
+  </div>`,
+  html:`<p style="margin:2px 0 4px;color:var(--ink-soft);">The scope of an architecture (Architecture Landscape) is measured across three dimensions:</p>
+  <table class="ref-table"><tr><th>Dimension</th><th>What it represents</th><th>How it's interpreted</th></tr>
+  <tr><td class="rf-name">Breadth</td><td>What part of the enterprise is covered</td><td>The whole enterprise, a segment, or a specific capability</td></tr>
+  <tr><td class="rf-name">Level</td><td>How strategic or detailed the content is</td><td>High = strategic/conceptual; medium = structural; low = detailed</td></tr>
+  <tr><td class="rf-name">Time</td><td>The architecture's time horizon</td><td>Baseline (AS-IS), Transition (intermediate), or Target (TO-BE)</td></tr>
+  </table>
+  <p style="margin:14px 0 4px;color:var(--ink-soft);">The three levels of the Architecture Landscape:</p>
+  <div class="ref-grid">
+    <div class="ref-pill"><div class="pt">Enterprise Strategic</div>Strategic direction and enterprise-wide guidelines. E.g.: "the bank will be 100% digital in loan origination".</div>
+    <div class="ref-pill"><div class="pt">Segment Architecture</div>Translates the strategy into a specific business area or line. E.g.: architecture for the Lending segment.</div>
+    <div class="ref-pill"><div class="pt">Capability Architecture</div>Detailed design of a specific capability. E.g.: architecture for the Scoring engine.</div>
   </div>`
 },
 {
-  id:"iteracion", title:"Tipos de iteración en el ADM",
-  html:`<table class="ref-table"><tr><th>Tipo</th><th>Qué significa</th><th>Por qué ocurre</th></tr>
+  id:"iteracion", title:"Tipos de iteración en el ADM", titleEn:"Types of Iteration in the ADM",
+  htmlEs:`<table class="ref-table"><tr><th>Tipo</th><th>Qué significa</th><th>Por qué ocurre</th></tr>
   <tr><td class="rf-name">Dentro de una fase</td><td>Se repite trabajo dentro de la misma fase para refinar el diseño</td><td>Aparecen nuevos requerimientos o ajustes</td></tr>
   <tr><td class="rf-name">Entre fases</td><td>Se regresa a una fase anterior por algo detectado después</td><td>Inconsistencias descubiertas en fases posteriores</td></tr>
   <tr><td class="rf-name">Ciclo completo del ADM</td><td>Se vuelve a ejecutar todo el ciclo para evolucionar la arquitectura</td><td>Cambio estratégico o nueva iniciativa</td></tr>
   <tr><td class="rf-name">Por nivel estratégico</td><td>Se aplica el ADM a nivel corporativo</td><td>Alinear arquitectura con la estrategia institucional</td></tr>
   <tr><td class="rf-name">Por segmento</td><td>Se aplica el ADM a un dominio específico del negocio</td><td>La transformación se ejecuta por áreas</td></tr>
   <tr><td class="rf-name">Por capacidad</td><td>Se aplica el ADM a una capacidad puntual</td><td>Se requiere mayor detalle técnico y funcional</td></tr>
+  </table>`,
+  html:`<table class="ref-table"><tr><th>Type</th><th>What it means</th><th>Why it happens</th></tr>
+  <tr><td class="rf-name">Within a phase</td><td>Work is repeated within the same phase to refine the design</td><td>New requirements or adjustments come up</td></tr>
+  <tr><td class="rf-name">Between phases</td><td>Returning to a previous phase because of something detected later</td><td>Inconsistencies found in later phases</td></tr>
+  <tr><td class="rf-name">Full ADM cycle</td><td>The entire cycle is run again to evolve the architecture</td><td>A strategic change or a new initiative</td></tr>
+  <tr><td class="rf-name">By strategic level</td><td>The ADM is applied at the corporate level</td><td>Aligning architecture with institutional strategy</td></tr>
+  <tr><td class="rf-name">By segment</td><td>The ADM is applied to a specific business domain</td><td>Transformation is carried out by area</td></tr>
+  <tr><td class="rf-name">By capability</td><td>The ADM is applied to a specific capability</td><td>Greater technical and functional detail is required</td></tr>
   </table>`
 },
 {
-  id:"propositos", title:"Propósitos de la Enterprise Architecture",
+  id:"propositos", title:"Propósitos de la Enterprise Architecture", titleEn:"Purposes of Enterprise Architecture",
+  htmlEs:`<div class="ref-grid">
+    <div class="ref-pill"><div class="pt">Support Strategy (Apoyo a la Estrategia)</div>Define hacia dónde debe evolucionar la organización y cómo lograrlo (arquitectura objetivo + roadmap).</div>
+    <div class="ref-pill"><div class="pt">Support Portfolio (Apoyo al Portafolio)</div>Asegura que programas y proyectos estén alineados con la arquitectura objetivo, priorizando inversión.</div>
+    <div class="ref-pill"><div class="pt">Support Project (Apoyo al Proyecto)</div>Define lineamientos y estándares que un proyecto específico debe cumplir.</div>
+    <div class="ref-pill"><div class="pt">Support Solution Delivery (Apoyo a la Entrega de Soluciones)</div>Define requisitos arquitectónicos (interoperabilidad, seguridad, escalabilidad) para construir la solución.</div>
+  </div>`,
   html:`<div class="ref-grid">
-    <div class="ref-pill"><div class="pt">Support Strategy</div>Define hacia dónde debe evolucionar la organización y cómo lograrlo (arquitectura objetivo + roadmap).</div>
-    <div class="ref-pill"><div class="pt">Support Portfolio</div>Asegura que programas y proyectos estén alineados con la arquitectura objetivo, priorizando inversión.</div>
-    <div class="ref-pill"><div class="pt">Support Project</div>Define lineamientos y estándares que un proyecto específico debe cumplir.</div>
-    <div class="ref-pill"><div class="pt">Support Solution Delivery</div>Define requisitos arquitectónicos (interoperabilidad, seguridad, escalabilidad) para construir la solución.</div>
+    <div class="ref-pill"><div class="pt">Support Strategy</div>Defines where the organization should evolve to and how to get there (target architecture + roadmap).</div>
+    <div class="ref-pill"><div class="pt">Support Portfolio</div>Ensures programs and projects are aligned with the target architecture, prioritizing investment.</div>
+    <div class="ref-pill"><div class="pt">Support Project</div>Defines the guidelines and standards a specific project must follow.</div>
+    <div class="ref-pill"><div class="pt">Support Solution Delivery</div>Defines architectural requirements (interoperability, security, scalability) for building the solution.</div>
   </div>`
 },
 {
-  id:"governance", title:"Architecture Governance",
-  html:`<table class="ref-table"><tr><th>Concepto</th><th>Explicación</th></tr>
-  <tr><td class="rf-name">Architecture Governance</td><td>Sistema que asegura que la arquitectura definida se implemente y se mantenga alineada — principalmente en Fase G</td></tr>
+  id:"governance", title:"Architecture Governance", titleEn:"Architecture Governance",
+  htmlEs:`<table class="ref-table"><tr><th>Concepto</th><th>Explicación</th></tr>
+  <tr><td class="rf-name">Architecture Governance (Gobernanza de Arquitectura)</td><td>Sistema que asegura que la arquitectura definida se implemente y se mantenga alineada — principalmente en Fase G</td></tr>
   <tr><td class="rf-name">Beneficios</td><td>Reduce riesgos, evita desviaciones, mejora coherencia y protege la inversión estratégica</td></tr>
-  <tr><td class="rf-name">Architecture Board</td><td>Órgano que revisa, aprueba y supervisa decisiones arquitectónicas — Fase Preliminar y G</td></tr>
-  <tr><td class="rf-name">Architecture Contracts</td><td>Acuerdo formal entre Arquitectura y Proyecto sobre qué debe cumplir — Fase G</td></tr>
-  <tr><td class="rf-name">Architecture Compliance</td><td>Proceso de revisión que verifica que un proyecto respete la arquitectura aprobada — Fase G y H</td></tr>
+  <tr><td class="rf-name">Architecture Board (Comité de Arquitectura)</td><td>Órgano que revisa, aprueba y supervisa decisiones arquitectónicas — Fase Preliminar y G</td></tr>
+  <tr><td class="rf-name">Architecture Contracts (Contratos de Arquitectura)</td><td>Acuerdo formal entre Arquitectura y Proyecto sobre qué debe cumplir — Fase G</td></tr>
+  <tr><td class="rf-name">Architecture Compliance (Cumplimiento de Arquitectura)</td><td>Proceso de revisión que verifica que un proyecto respete la arquitectura aprobada — Fase G y H</td></tr>
   </table>
   <p style="margin:14px 0 4px;color:var(--ink-soft);">Matriz RACI:</p>
   <div class="ref-grid">
@@ -583,22 +636,43 @@ const REFERENCE = [
     <div class="ref-pill"><div class="pt">A — Accountable</div>Quien responde por el resultado. Solo debe haber uno.</div>
     <div class="ref-pill"><div class="pt">C — Consulted</div>Se le consulta antes de decidir — comunicación bidireccional.</div>
     <div class="ref-pill"><div class="pt">I — Informed</div>Se le mantiene informado — comunicación unidireccional.</div>
+  </div>`,
+  html:`<table class="ref-table"><tr><th>Concept</th><th>Explanation</th></tr>
+  <tr><td class="rf-name">Architecture Governance</td><td>The system that ensures the defined architecture is implemented and stays aligned — mainly in Phase G</td></tr>
+  <tr><td class="rf-name">Benefits</td><td>Reduces risk, prevents deviations, improves coherence, and protects the strategic investment</td></tr>
+  <tr><td class="rf-name">Architecture Board</td><td>The body that reviews, approves, and oversees architectural decisions — Preliminary Phase and Phase G</td></tr>
+  <tr><td class="rf-name">Architecture Contracts</td><td>Formal agreement between Architecture and a Project on what must be met — Phase G</td></tr>
+  <tr><td class="rf-name">Architecture Compliance</td><td>Review process that verifies a project respects the approved architecture — Phase G and H</td></tr>
+  </table>
+  <p style="margin:14px 0 4px;color:var(--ink-soft);">RACI Matrix:</p>
+  <div class="ref-grid">
+    <div class="ref-pill"><div class="pt">R — Responsible</div>Who does the work. There can be more than one.</div>
+    <div class="ref-pill"><div class="pt">A — Accountable</div>Who answers for the outcome. There should be only one.</div>
+    <div class="ref-pill"><div class="pt">C — Consulted</div>Consulted before a decision is made — two-way communication.</div>
+    <div class="ref-pill"><div class="pt">I — Informed</div>Kept informed — one-way communication.</div>
   </div>`
 },
 {
-  id:"abbsbb", title:"ABB vs SBB",
-  html:`<table class="ref-table"><tr><th></th><th>ABB — Architecture Building Block</th><th>SBB — Solution Building Block</th></tr>
+  id:"abbsbb", title:"ABB vs SBB", titleEn:"ABB vs SBB",
+  htmlEs:`<table class="ref-table"><tr><th></th><th>ABB (Bloque de Construcción de Arquitectura)</th><th>SBB (Bloque de Construcción de Solución)</th></tr>
   <tr><td class="rf-name">Nivel</td><td>Arquitectura</td><td>Implementación</td></tr>
   <tr><td class="rf-name">Naturaleza</td><td>Conceptual / lógica</td><td>Concreta / tecnológica</td></tr>
   <tr><td class="rf-name">Define</td><td>Una capacidad o componente necesario</td><td>La solución tecnológica específica</td></tr>
   <tr><td class="rf-name">Ejemplo</td><td>"Gestión de Recursos Humanos (HCM)"</td><td>"SAP SuccessFactors"</td></tr>
   </table>
-  <div class="ref-note">Separar ABB y SBB hace que la arquitectura sea independiente del proveedor: cambiar de tecnología implica cambiar la solución, no rediseñar la arquitectura.</div>`
+  <div class="ref-note">Separar ABB y SBB hace que la arquitectura sea independiente del proveedor: cambiar de tecnología implica cambiar la solución, no rediseñar la arquitectura.</div>`,
+  html:`<table class="ref-table"><tr><th></th><th>ABB (Architecture Building Block)</th><th>SBB (Solution Building Block)</th></tr>
+  <tr><td class="rf-name">Level</td><td>Architecture</td><td>Implementation</td></tr>
+  <tr><td class="rf-name">Nature</td><td>Conceptual / logical</td><td>Concrete / technological</td></tr>
+  <tr><td class="rf-name">Defines</td><td>A required capability or component</td><td>The specific technology solution</td></tr>
+  <tr><td class="rf-name">Example</td><td>"Human Capital Management (HCM)"</td><td>"SAP SuccessFactors"</td></tr>
+  </table>
+  <div class="ref-note">Separating ABBs and SBBs keeps the architecture vendor-independent: changing technology means changing the solution, not redesigning the architecture.</div>`
 },
 {
-  id:"glosario", title:"Glosario oficial (TOGAF 10 Standard)",
-  html:`<p style="margin:2px 0 10px;color:var(--ink-soft);">Definiciones textuales de la Unidad 2 del curso oficial — las más precisas para el examen.</p>
-  <table class="ref-table"><tr><th>Término</th><th>Definición oficial</th></tr>
+  id:"glosario", title:"Glosario oficial (TOGAF 10 Standard)", titleEn:"Official Glossary (TOGAF 10 Standard)",
+  html:`<p style="margin:2px 0 10px;color:var(--ink-soft);">Verbatim definitions from Unit 2 of the official course — the most precise wording for the exam.</p>
+  <table class="ref-table"><tr><th>Term</th><th>Official Definition</th></tr>
   <tr><td class="rf-name">Architecture</td><td>The fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution.</td></tr>
   <tr><td class="rf-name">ADM</td><td>The core of the TOGAF framework — a multi-phase, iterative approach to develop and use an Enterprise Architecture to shape and govern business transformation.</td></tr>
   <tr><td class="rf-name">Architecture Domain</td><td>The architectural area being considered — Business, Data, Application, and Technology are the four primary domains.</td></tr>
@@ -624,28 +698,28 @@ const REFERENCE = [
   </table>`,
   htmlEs:`<p style="margin:2px 0 10px;color:var(--ink-soft);">Definiciones textuales de la Unidad 2 del curso oficial — las más precisas para el examen.</p>
   <table class="ref-table"><tr><th>Término</th><th>Definición oficial</th></tr>
-  <tr><td class="rf-name">Architecture</td><td>Los conceptos o propiedades fundamentales de un sistema en su entorno, plasmados en sus elementos, relaciones, y en los principios de su diseño y evolución.</td></tr>
-  <tr><td class="rf-name">ADM</td><td>El núcleo del framework de TOGAF — un enfoque iterativo de varias fases para desarrollar y usar una Enterprise Architecture que dé forma y gobierne la transformación del negocio.</td></tr>
-  <tr><td class="rf-name">Architecture Domain</td><td>El área arquitectónica que se está considerando — Business, Data, Application y Technology son los cuatro dominios primarios.</td></tr>
-  <tr><td class="rf-name">Architecture Framework</td><td>Una estructura conceptual usada para planificar, desarrollar, implementar, gobernar y sostener una arquitectura.</td></tr>
-  <tr><td class="rf-name">Architecture Landscape</td><td>La representación arquitectónica de los activos en uso, o planeados, por la empresa en momentos específicos.</td></tr>
-  <tr><td class="rf-name">Architecture Vision</td><td>Una descripción sucinta de la Arquitectura Objetivo que describe su valor de negocio y los cambios a la empresa que resultarán de su despliegue exitoso.</td></tr>
-  <tr><td class="rf-name">Artifact</td><td>Un producto de trabajo arquitectónico que describe un aspecto de la arquitectura.</td></tr>
-  <tr><td class="rf-name">Baseline</td><td>Una especificación que ha sido formalmente revisada y acordada, que a partir de entonces sirve de base para el desarrollo o cambio posterior.</td></tr>
-  <tr><td class="rf-name">Capability</td><td>Una habilidad que posee una organización, persona o sistema.</td></tr>
-  <tr><td class="rf-name">Deliverable</td><td>Un producto de trabajo arquitectónico que está contractualmente especificado y a su vez formalmente revisado, acordado y firmado por los stakeholders.</td></tr>
-  <tr><td class="rf-name">Enterprise</td><td>El nivel más alto (típicamente) de descripción de una organización, que cubre todas sus misiones y funciones — suele abarcar varias organizaciones.</td></tr>
-  <tr><td class="rf-name">Gap</td><td>La declaración de la diferencia entre dos estados — se usa en el gap analysis, donde se identifica la diferencia entre la Arquitectura Baseline y la Objetivo.</td></tr>
-  <tr><td class="rf-name">Metamodel</td><td>Un modelo que describe las entidades usadas al construir una Architecture Description, sus características, y las relaciones clave entre esas entidades.</td></tr>
-  <tr><td class="rf-name">Modeling</td><td>Una técnica, mediante la construcción de modelos, que permite representar un tema de forma que habilite el razonamiento, la comprensión y la claridad sobre su esencia.</td></tr>
-  <tr><td class="rf-name">Requirement</td><td>Una declaración de necesidad, inequívoca, comprobable o medible, y necesaria para la aceptación.</td></tr>
-  <tr><td class="rf-name">Role</td><td>El comportamiento usual o esperado de un actor, o el papel que alguien o algo desempeña en un proceso o evento particular.</td></tr>
-  <tr><td class="rf-name">Segment Architecture</td><td>Una descripción detallada y formal de áreas dentro de una empresa, usada a nivel de programa o portafolio para organizar y alinear la actividad de cambio.</td></tr>
-  <tr><td class="rf-name">Stakeholder</td><td>Un individuo, equipo, organización, o clase de ellos, que tiene un interés en un sistema.</td></tr>
-  <tr><td class="rf-name">Strategic Architecture</td><td>Una descripción formal resumida de la empresa, que ofrece un marco organizador para la actividad operativa y de cambio, y una vista de largo plazo a nivel ejecutivo.</td></tr>
-  <tr><td class="rf-name">Target Architecture</td><td>La descripción de un estado futuro de la arquitectura que se está desarrollando para una organización.</td></tr>
-  <tr><td class="rf-name">Transition Architecture</td><td>Una descripción formal de un estado de la arquitectura en un punto arquitectónicamente significativo en el tiempo.</td></tr>
-  <tr><td class="rf-name">Work Package</td><td>Un conjunto de acciones identificadas para lograr uno o más objetivos del negocio — puede ser parte de un proyecto, un proyecto completo, o un programa.</td></tr>
+  <tr><td class="rf-name">Architecture (Arquitectura)</td><td>Los conceptos o propiedades fundamentales de un sistema en su entorno, plasmados en sus elementos, relaciones, y en los principios de su diseño y evolución.</td></tr>
+  <tr><td class="rf-name">ADM (ADM)</td><td>El núcleo del framework de TOGAF — un enfoque iterativo de varias fases para desarrollar y usar una Enterprise Architecture que dé forma y gobierne la transformación del negocio.</td></tr>
+  <tr><td class="rf-name">Architecture Domain (Dominio de Arquitectura)</td><td>El área arquitectónica que se está considerando — Business, Data, Application y Technology son los cuatro dominios primarios.</td></tr>
+  <tr><td class="rf-name">Architecture Framework (Marco de Arquitectura)</td><td>Una estructura conceptual usada para planificar, desarrollar, implementar, gobernar y sostener una arquitectura.</td></tr>
+  <tr><td class="rf-name">Architecture Landscape (Panorama de Arquitectura)</td><td>La representación arquitectónica de los activos en uso, o planeados, por la empresa en momentos específicos.</td></tr>
+  <tr><td class="rf-name">Architecture Vision (Visión de Arquitectura)</td><td>Una descripción sucinta de la Arquitectura Objetivo que describe su valor de negocio y los cambios a la empresa que resultarán de su despliegue exitoso.</td></tr>
+  <tr><td class="rf-name">Artifact (Artefacto)</td><td>Un producto de trabajo arquitectónico que describe un aspecto de la arquitectura.</td></tr>
+  <tr><td class="rf-name">Baseline (Línea Base)</td><td>Una especificación que ha sido formalmente revisada y acordada, que a partir de entonces sirve de base para el desarrollo o cambio posterior.</td></tr>
+  <tr><td class="rf-name">Capability (Capacidad)</td><td>Una habilidad que posee una organización, persona o sistema.</td></tr>
+  <tr><td class="rf-name">Deliverable (Entregable)</td><td>Un producto de trabajo arquitectónico que está contractualmente especificado y a su vez formalmente revisado, acordado y firmado por los stakeholders.</td></tr>
+  <tr><td class="rf-name">Enterprise (Empresa)</td><td>El nivel más alto (típicamente) de descripción de una organización, que cubre todas sus misiones y funciones — suele abarcar varias organizaciones.</td></tr>
+  <tr><td class="rf-name">Gap (Brecha)</td><td>La declaración de la diferencia entre dos estados — se usa en el gap analysis, donde se identifica la diferencia entre la Arquitectura Baseline y la Objetivo.</td></tr>
+  <tr><td class="rf-name">Metamodel (Metamodelo)</td><td>Un modelo que describe las entidades usadas al construir una Architecture Description, sus características, y las relaciones clave entre esas entidades.</td></tr>
+  <tr><td class="rf-name">Modeling (Modelado)</td><td>Una técnica, mediante la construcción de modelos, que permite representar un tema de forma que habilite el razonamiento, la comprensión y la claridad sobre su esencia.</td></tr>
+  <tr><td class="rf-name">Requirement (Requerimiento)</td><td>Una declaración de necesidad, inequívoca, comprobable o medible, y necesaria para la aceptación.</td></tr>
+  <tr><td class="rf-name">Role (Rol)</td><td>El comportamiento usual o esperado de un actor, o el papel que alguien o algo desempeña en un proceso o evento particular.</td></tr>
+  <tr><td class="rf-name">Segment Architecture (Arquitectura de Segmento)</td><td>Una descripción detallada y formal de áreas dentro de una empresa, usada a nivel de programa o portafolio para organizar y alinear la actividad de cambio.</td></tr>
+  <tr><td class="rf-name">Stakeholder (Interesado)</td><td>Un individuo, equipo, organización, o clase de ellos, que tiene un interés en un sistema.</td></tr>
+  <tr><td class="rf-name">Strategic Architecture (Arquitectura Estratégica)</td><td>Una descripción formal resumida de la empresa, que ofrece un marco organizador para la actividad operativa y de cambio, y una vista de largo plazo a nivel ejecutivo.</td></tr>
+  <tr><td class="rf-name">Target Architecture (Arquitectura Objetivo)</td><td>La descripción de un estado futuro de la arquitectura que se está desarrollando para una organización.</td></tr>
+  <tr><td class="rf-name">Transition Architecture (Arquitectura de Transición)</td><td>Una descripción formal de un estado de la arquitectura en un punto arquitectónicamente significativo en el tiempo.</td></tr>
+  <tr><td class="rf-name">Work Package (Paquete de Trabajo)</td><td>Un conjunto de acciones identificadas para lograr uno o más objetivos del negocio — puede ser parte de un proyecto, un proyecto completo, o un programa.</td></tr>
   </table>`
 }
 ];
@@ -1033,24 +1107,25 @@ function openGeneral(n){
 }
 
 function renderReference(){
+  const es = loadLang() === 'es';
   app.innerHTML = `
     ${topbar()}
     <button class="back-link" onclick="go({view:'home'})">← Volver</button>
-    <div class="section-title">Chuleta de repaso</div>
-    <div class="section-desc">Resumen en español de tu material — tocá cada sección para abrirla.</div>
+    <div class="section-title">${es ? 'Chuleta de repaso' : 'Study Cheat Sheet'}</div>
+    <div class="section-desc">${es ? 'Términos oficiales en inglés con su explicación en español — tocá cada sección para abrirla.' : 'Official TOGAF terminology — tap each section to open it.'}</div>
     <div id="refList">
       ${REFERENCE.map((s,i)=>`
         <div class="ref-section" id="ref-${s.id}">
           <div class="ref-head" onclick="toggleRef('${s.id}')">
             <div class="rbadge">${String(i+1).padStart(2,'0')}</div>
-            <h3>${s.title}</h3>
+            <h3>${es ? s.title : (s.titleEn || s.title)}</h3>
             <div class="chev">›</div>
           </div>
-          <div class="ref-body">${loadLang()==='es' && s.htmlEs ? s.htmlEs : s.html}</div>
+          <div class="ref-body">${es && s.htmlEs ? s.htmlEs : s.html}</div>
         </div>
       `).join("")}
     </div>
-    <footer class="note">Contenido tomado de tu resumen del Ciclo ADM (Excel) y del glosario oficial del curso</footer>
+    <footer class="note">${es ? 'Contenido tomado de tu resumen del Ciclo ADM (Excel) y del glosario oficial del curso' : 'Content sourced from your ADM Cycle summary (Excel) and the official course glossary'}</footer>
   `;
 }
 function toggleRef(id){
